@@ -19,7 +19,7 @@ const rule = ESLintUtils.RuleCreator(
     docs: {
       category: "Stylistic Issues",
       description: "Optional properties must be of type Maybe<T>",
-      recommended: false,
+      recommended: "error",
     },
     messages: {
       default: "`{{property}}` should be changed to `Maybe<{{property}}>`",

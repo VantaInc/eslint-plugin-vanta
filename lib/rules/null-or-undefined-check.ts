@@ -19,7 +19,7 @@ const rule = ESLintUtils.RuleCreator(
     docs: {
       category: "Stylistic Issues",
       description: "Use isSome(expr) to check against undefined or null.",
-      recommended: false,
+      recommended: "error",
     },
     messages: {
       default: `{{original}} should be {{replacement}}`,

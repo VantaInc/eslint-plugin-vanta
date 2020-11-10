@@ -18,43 +18,46 @@ const rule = ESLintUtils.RuleCreator(
   (ruleName) =>
     `https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/${ruleName}.md`
 )<unknown[], "default">({
-  name: "prefer-maybe",
+  name: "common-absolute-import",
   meta: {
     fixable: "code",
     docs: {
-      category: "Stylistic Issues",
-      description: "Prefer Maybe<T> to T | null or T | undefined.",
+      category: "Possible Errors",
+      description: "Import common/ from its absolute path",
       recommended: "error",
     },
     messages: {
-      default: "Prefer Maybe<T> to T | null or T | undefined.",
+      default: "Import code in common/ from its absolute path",
     },
     type: "suggestion",
     schema: [],
   },
   defaultOptions: [],
   create(context) {
-    const sourceCode = context.getSourceCode();
-
+    const badCommonImportRegex = /\.\.\/.*\/?(common\/)src\/(.*)/s;
     return {
-      TSUnionType(node) {
-        const unionWithoutNothing = node.types.filter(
-          (t) => !NOTHING_TYPES.includes(t.type)
-        );
-        if (node.types.length === unionWithoutNothing.length) {
+      ImportDeclaration(node) {
+        if (typeof node.source.value !== "string") {
           return;
         }
-        const unionWithoutNothingString = unionWithoutNothing
-          .map((t) => sourceCode.getText(t))
-          .join(" | ");
-
-        const replacement = `Maybe<${unionWithoutNothingString}>`;
-
+        const matches = node.source.value.match(badCommonImportRegex);
+        if (!matches) {
+          return;
+        }
+        const replacement = node.source.value.replace(
+          badCommonImportRegex,
+          "$1$2"
+        );
         context.report({
           node,
           messageId: "default",
           fix(fixer) {
-            return [fixer.replaceText(node, replacement)];
+            return [
+              fixer.replaceTextRange(
+                [node.source.range[0] + 1, node.source.range[1] - 1],
+                replacement
+              ),
+            ];
           },
         });
       },
