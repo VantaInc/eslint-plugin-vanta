@@ -10,7 +10,9 @@
   "author": "Robbie Ostrow",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "build": "tsc",
+    "build-and-test": "npm run build && npm run test"
   },
   "dependencies": {
     "requireindex": "~1.1.0"

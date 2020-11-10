@@ -4,7 +4,9 @@ Never check directly against `undefined` or `null`. Instead, use `isSome`.
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to ensure that we don't treat `undefined` and `null` differently in our code, since doing so tends to cause confusion.
+
+Autofixer available.
 
 Examples of **incorrect** code for this rule:
 
@@ -24,4 +26,4 @@ if (isSome(x)) {
 
 ## When Not To Use It
 
-If you're dealing with third-party code that logically differentiates between undefined and null.
+If you're dealing with third-party code that needs to differentiate between undefined and null.
