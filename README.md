@@ -42,8 +42,10 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* Fill in provided rules here
-
+- [common-absolute-import](/docs/rules/common-absolute-import.md)
+- [null-or-undefined-check](/docs/rules/null-or-undefined-check.md)
+- [prefer-maybe](/docs/rules/prefer-maybe.md)
+- [optional-always-maybe](/docs/rules/optional-always-maybe.md)
 
 
 
