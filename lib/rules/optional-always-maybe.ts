@@ -10,7 +10,8 @@ import {
 } from "@typescript-eslint/experimental-utils";
 
 const rule = ESLintUtils.RuleCreator(
-  (ruleName) => `https://github.com/TODO/${ruleName}`
+  (ruleName) =>
+    `https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/${ruleName}.md`
 )<unknown[], "default">({
   name: "optional-always-maybe",
   meta: {
