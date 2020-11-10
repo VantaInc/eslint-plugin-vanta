@@ -13,7 +13,7 @@
     "test": "mocha tests --recursive",
     "build": "tsc",
     "build-and-test": "npm run build && npm run test",
-    "prepare": "npm run build"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
