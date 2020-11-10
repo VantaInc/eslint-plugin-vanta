@@ -21,7 +21,7 @@ const rule = ESLintUtils.RuleCreator(
       recommended: false,
     },
     messages: {
-      default: `Use isSome(expr) to check against undefined or null.`,
+      default: `{{original}} should be {{replacement}}`,
     },
     type: "suggestion",
     schema: [],
@@ -57,13 +57,17 @@ const rule = ESLintUtils.RuleCreator(
           return;
         }
         const text = sourceCode.getText(variableExpr);
+        const replacement = `${isEquals ? "!" : ""}isSome(${text})`;
+        const original = sourceCode.getText(node);
         context.report({
           node,
+          data: {
+            original,
+            replacement,
+          },
           messageId: "default",
           fix(fixer) {
-            return [
-              fixer.replaceText(node, `${isEquals ? "!" : ""}isSome(${text})`),
-            ];
+            return [fixer.replaceText(node, replacement)];
           },
         });
       },
