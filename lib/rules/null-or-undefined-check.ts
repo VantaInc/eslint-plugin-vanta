@@ -9,9 +9,9 @@ import {
   ESLintUtils,
 } from "@typescript-eslint/experimental-utils";
 
-module.exports = ESLintUtils.RuleCreator(
+const rule = ESLintUtils.RuleCreator(
   (ruleName) => `https://github.com/TODO/${ruleName}`
-)<[], "generic">({
+)<unknown[], "default">({
   name: "null-or-undefined-check",
   meta: {
     fixable: "code",
@@ -21,13 +21,15 @@ module.exports = ESLintUtils.RuleCreator(
       recommended: false,
     },
     messages: {
-      generic: `Use isSome(expr) to check against {{type}}.`,
+      default: `Use isSome(expr) to check against undefined or null.`,
     },
     type: "suggestion",
     schema: [],
   },
   defaultOptions: [],
   create(context) {
+    const sourceCode = context.getSourceCode();
+
     return {
       BinaryExpression(node): void {
         let isEquals: boolean;
@@ -40,30 +42,27 @@ module.exports = ESLintUtils.RuleCreator(
         }
         let variableExpr: TSESTree.Expression;
         if (
-          node.left.type === AST_NODE_TYPES.Literal &&
-          (node.left.value === null || node.left.value === undefined)
+          (node.left.type === AST_NODE_TYPES.Literal &&
+            node.left.value === null) ||
+          sourceCode.getText(node.left) === "undefined" // undefined is unfortunately an identifier type; assume that it isn't overridden
         ) {
           variableExpr = node.right;
         } else if (
-          node.right.type === AST_NODE_TYPES.Literal &&
-          (node.right.value === null || node.right.value === undefined)
+          (node.right.type === AST_NODE_TYPES.Literal &&
+            node.right.value === null) ||
+          sourceCode.getText(node.right) === "undefined"
         ) {
           variableExpr = node.left;
         } else {
           return;
         }
+        const text = sourceCode.getText(variableExpr);
         context.report({
           node,
-          messageId: "generic",
-          data: {
-            type: variableExpr.type,
-          },
+          messageId: "default",
           fix(fixer) {
             return [
-              fixer.replaceText(
-                node,
-                `${isEquals ? "!" : ""}isSome(${variableExpr})`
-              ),
+              fixer.replaceText(node, `${isEquals ? "!" : ""}isSome(${text})`),
             ];
           },
         });
@@ -71,3 +70,7 @@ module.exports = ESLintUtils.RuleCreator(
     };
   },
 });
+
+module.exports = rule;
+
+export default rule;
