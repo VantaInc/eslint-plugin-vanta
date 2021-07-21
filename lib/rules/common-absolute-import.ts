@@ -3,16 +3,7 @@
  * @author Robbie Ostrow
  */
 
-import {
-  AST_NODE_TYPES,
-  TSESTree,
-  ESLintUtils,
-} from "@typescript-eslint/experimental-utils";
-
-const NOTHING_TYPES = [
-  AST_NODE_TYPES.TSNullKeyword,
-  AST_NODE_TYPES.TSUndefinedKeyword,
-];
+import { ESLintUtils } from "@typescript-eslint/experimental-utils";
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>

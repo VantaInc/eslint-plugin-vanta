@@ -17,7 +17,7 @@ import { Maybe } from "../../common/src/base/maybe";
 Examples of **correct** code for this rule:
 
 ```js
-import { Maybe } from "common/base/maybe;
+import { Maybe } from "common/base/maybe";
 ```
 
 ## When Not To Use It

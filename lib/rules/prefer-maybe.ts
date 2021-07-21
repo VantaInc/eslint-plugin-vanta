@@ -5,7 +5,6 @@
 
 import {
   AST_NODE_TYPES,
-  TSESTree,
   ESLintUtils,
 } from "@typescript-eslint/experimental-utils";
 

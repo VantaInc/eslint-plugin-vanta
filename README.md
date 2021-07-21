@@ -16,37 +16,49 @@ Next, install `eslint-plugin-vanta`:
 $ npm install eslint-plugin-vanta --save-dev
 ```
 
-
 ## Usage
 
 Add `vanta` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
-    "plugins": [
-        "vanta"
-    ]
+  "plugins": ["vanta"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "vanta/rule-name": 2
-    }
+  "rules": {
+    "vanta/rule-name": 2
+  }
 }
 ```
 
+## Creating a new rule
+
+- Rule definitions live in `/lib/rules/<rule-name>.ts`
+- Tests live in `/tests/lib/rules/<rule-name>.test.ts`
+- Documentation lives in `/docs/rules/<rule-name>.md`
+
+Hot tips:
+
+- For an example GraphQL schema rule, see [mutations-return-payload](/lib/rules/mutations-return-payload.ts)
+- For an example TypeScript rule, see [prefer-maybe](/lib/rules/prefer-maybe.ts)
+- Use https://astexplorer.net/ to explore a TypeScript or GraphQL AST so you don't have to guess which type you're dealing with!
+- See also https://eslint.org/docs/developer-guide/selectors to understand ESLint selectors
+- Run `npm run build-and-test` to test your rules
+
 ## Supported Rules
+
+### TypeScript
 
 - [common-absolute-import](/docs/rules/common-absolute-import.md)
 - [null-or-undefined-check](/docs/rules/null-or-undefined-check.md)
 - [prefer-maybe](/docs/rules/prefer-maybe.md)
 - [optional-always-maybe](/docs/rules/optional-always-maybe.md)
 
+### GraphQL
 
-
-
+- [mutations-return-payload](/docs/rules/mutations-return-payload.md)
