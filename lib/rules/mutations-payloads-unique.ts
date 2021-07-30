@@ -42,9 +42,9 @@ const rule: GraphQLESLintRule = {
             if (typeNames.has(payloadTypeName)) {
               context.report({
                 node: node,
-                message: `Mutation payload types must be unique; reused name {{name}}`,
+                message: `Mutation payload types must be unique; reused type {{type}}`,
                 data: {
-                  name: payloadTypeName,
+                  type: payloadTypeName,
                 },
               });
               return;
