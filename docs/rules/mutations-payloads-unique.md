@@ -1,6 +1,6 @@
-# Mutations must return payload types (mutations-return-payload)
+# Mutations must return unique payload types (mutations-payloads-unique)
 
-All mutations must return a nullable type with the suffix `Payload`.
+All mutations must return a unique payload type
 
 ## Rule Details
 
