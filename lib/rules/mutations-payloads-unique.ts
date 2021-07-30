@@ -21,7 +21,7 @@ const rule: GraphQLESLintRule = {
   },
   create(context) {
     const validatePayload = (node: GraphQLESTreeNode<DocumentNode>) => {
-      const set = new Set<string>();
+      const typeNames = new Set<string>();
       node.rawNode().definitions?.forEach((definition) => {
         if (
           definition.kind === "ObjectTypeDefinition" ||
@@ -36,19 +36,20 @@ const rule: GraphQLESLintRule = {
               field.type.kind === "ListType" ||
               field.type.kind === "NonNullType"
             ) {
-              // just ignore these; mutations-return-payload will check
               return;
             }
-            const payloadTypeNameNode = field.type.name;
-            const val = payloadTypeNameNode.value;
-            if (set.has(val)) {
+            const payloadTypeName = field.type.name.value;
+            if (typeNames.has(payloadTypeName)) {
               context.report({
                 node: node,
-                message: `Mutation payload types must be unique`,
+                message: `Mutation payload types must be unique; reused name {{name}}`,
+                data: {
+                  name: payloadTypeName,
+                },
               });
               return;
             }
-            set.add(val);
+            typeNames.add(payloadTypeName);
           });
         }
       });
