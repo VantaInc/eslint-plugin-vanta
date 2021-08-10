@@ -48,13 +48,20 @@ const rule: GraphQLESLintRule = {
       if (!type) {
         return true; // type not found; assume OK
       }
-      // need to check builtin scalars because (I think) of GraphQLScalarType
-      // changing in graphql versions
+      // need to check a whitelist since the version of graphql we're using
+      // seems to not work with the instanceOf checks. Hoping we can get rid of
+      // this in the future.
       const builtinScalars = ["Int", "Float", "String", "Boolean", "ID"];
+      const customScalarsAndEnums = [
+        "DateTime",
+        "reportStandard",
+        "testOutcome",
+      ];
       const typeIsScalar =
         type instanceof GraphQLScalarType ||
         type instanceof GraphQLEnumType ||
-        builtinScalars.includes(typeName);
+        builtinScalars.includes(typeName) ||
+        customScalarsAndEnums.includes(typeName);
       return hasPublicDirective(type.astNode?.directives) || typeIsScalar;
     };
 
