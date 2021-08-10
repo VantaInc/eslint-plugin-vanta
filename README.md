@@ -62,3 +62,6 @@ Hot tips:
 ### GraphQL
 
 - [mutations-return-payload](/docs/rules/mutations-return-payload.md)
+- [mutations-payloads-unique](/docs/rules/mutations-payloads-unique.md)
+- [mutations-input-type](/docs/rules/mutations-input-type.md)
+- [public-descendants-public](/docs/rules/public-descendants-public.md)
