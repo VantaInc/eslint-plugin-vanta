@@ -98,6 +98,49 @@ type T3 @public {
   val: String
 }
 `),
+    useSchema(`
+"""
+compliance principle
+"""
+type compliancePrinciple @public {
+  name: String!
+  shorthand: String
+  section: String!
+  optional: Boolean!
+  requirements: [complianceRequirement!]!
+}
+
+"""
+compliance requirement
+"""
+type complianceRequirement @public {
+  name: String!
+  section: String!
+  shorthand: String
+  controls: [complianceControl!]!
+}
+
+"""
+compliance control
+"""
+type complianceControl @public {
+  key: String!
+  control: String!
+  name: String!
+  tests(domainId: String!): [complianceTest!]!
+}
+
+"""
+compliance test
+"""
+type complianceTest @public {
+  name: String!
+  defaultRemediation: String!
+  severity: String!
+  test: String!
+  testId: String!
+}
+`),
   ],
   invalid: [
     {

@@ -56,7 +56,7 @@ const rule: GraphQLESLintRule = {
         if (!fieldPointsToPublicTypeOrScalar(node.rawNode())) {
           context.report({
             node,
-            message: `Types accessible by @${PUBLIC_DIRECTIVE} fields must be marked @${PUBLIC_DIRECTIVE}`,
+            message: `Types accessible by @${PUBLIC_DIRECTIVE} fields must be marked @${PUBLIC_DIRECTIVE}.`,
           });
         }
       },
@@ -69,7 +69,7 @@ const rule: GraphQLESLintRule = {
           if (!fieldPointsToPublicTypeOrScalar(field)) {
             context.report({
               node,
-              message: `Types accessible from @${PUBLIC_DIRECTIVE} types must themselves be marked @${PUBLIC_DIRECTIVE}`,
+              message: `Types accessible from @${PUBLIC_DIRECTIVE} types must themselves be marked @${PUBLIC_DIRECTIVE}. Unmarked field: ${field.name.value}`,
             });
           }
         });
