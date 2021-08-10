@@ -85,7 +85,7 @@ type T3 @public {
 }
 `),
     useSchema(`
-type T1 {
+type T1 @public {
   val: T2
   val2: T3
 }

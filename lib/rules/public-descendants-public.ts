@@ -5,7 +5,7 @@
 
 import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
 
-import { FieldDefinitionNode, GraphQLScalarType } from "graphql";
+import { DirectiveNode, FieldDefinitionNode, GraphQLScalarType } from "graphql";
 import {
   extractNamedType,
   requireGraphQLSchemaFromContext,
@@ -17,7 +17,8 @@ const rule: GraphQLESLintRule = {
   meta: {
     type: "problem",
     docs: {
-      description: "TODO",
+      description:
+        "Ensures that all types reachable from fields marked as @public are themselves marked as @public.",
       category: "Best Practices",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/public-descendants-public.md",
     },
@@ -28,6 +29,14 @@ const rule: GraphQLESLintRule = {
       context
     );
 
+    const hasPublicDirective = (
+      directives: readonly DirectiveNode[] | undefined
+    ): boolean => {
+      return Boolean(
+        directives?.find((x) => x.name.value === PUBLIC_DIRECTIVE)
+      );
+    };
+
     const fieldPointsToPublicTypeOrScalar = (node: FieldDefinitionNode) => {
       const typeName = extractNamedType(node.type).name.value;
       const type = schema.getType(typeName);
@@ -35,15 +44,12 @@ const rule: GraphQLESLintRule = {
         return true; // type not found; assume OK
       }
       const typeIsScalar = type instanceof GraphQLScalarType;
-      const typeHasPublicDirective = Boolean(
-        type.astNode?.directives?.find((x) => x.name.value === PUBLIC_DIRECTIVE)
-      );
-      return typeHasPublicDirective || typeIsScalar;
+      return hasPublicDirective(type.astNode?.directives) || typeIsScalar;
     };
 
     return {
       FieldDefinition(node) {
-        if (!node.directives?.find((x) => x.name.value === PUBLIC_DIRECTIVE)) {
+        if (!hasPublicDirective(node.directives)) {
           return;
         }
 
@@ -56,7 +62,7 @@ const rule: GraphQLESLintRule = {
       },
 
       ObjectTypeDefinition(node) {
-        if (!node.directives?.find((x) => x.name.value === PUBLIC_DIRECTIVE)) {
+        if (!hasPublicDirective(node.directives)) {
           return;
         }
         node.rawNode().fields?.forEach((field) => {
@@ -70,7 +76,7 @@ const rule: GraphQLESLintRule = {
       },
 
       ObjectTypeExtension(node) {
-        if (!node.directives?.find((x) => x.name.value === PUBLIC_DIRECTIVE)) {
+        if (!hasPublicDirective(node.directives)) {
           return;
         }
         context.report({
