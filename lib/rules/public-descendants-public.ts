@@ -5,7 +5,12 @@
 
 import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
 
-import { DirectiveNode, FieldDefinitionNode, GraphQLScalarType } from "graphql";
+import {
+  DirectiveNode,
+  FieldDefinitionNode,
+  GraphQLEnumType,
+  GraphQLScalarType,
+} from "graphql";
 import {
   extractNamedType,
   requireGraphQLSchemaFromContext,
@@ -43,7 +48,13 @@ const rule: GraphQLESLintRule = {
       if (!type) {
         return true; // type not found; assume OK
       }
-      const typeIsScalar = type instanceof GraphQLScalarType;
+      // need to check builtin scalars because (I think) of GraphQLScalarType
+      // changing in graphql versions
+      const builtinScalars = ["Int", "Float", "String", "Boolean", "ID"];
+      const typeIsScalar =
+        type instanceof GraphQLScalarType ||
+        type instanceof GraphQLEnumType ||
+        builtinScalars.includes(typeName);
       return hasPublicDirective(type.astNode?.directives) || typeIsScalar;
     };
 
