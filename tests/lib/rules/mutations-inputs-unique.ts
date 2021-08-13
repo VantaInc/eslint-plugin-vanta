@@ -57,7 +57,7 @@ type Mutation {
 type Mutation {
   firstMutation(input: abcInput!): abcPayload
   secondMutation(input: bcdInput!): bcdPayload
-  thirdMutation(input: abcPayload!): cdePayload
+  thirdMutation(input: abcInput!): cdePayload
 }
 `,
       errors: 1,
