@@ -15,8 +15,7 @@ const rule: GraphQLESLintRule = {
     docs: {
       description: "All mutations must return a unique type",
       category: "Best Practices",
-      url:
-        "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-return-payload.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-payloads-unique.md",
     },
   },
   create(context) {
