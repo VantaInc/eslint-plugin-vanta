@@ -2,6 +2,20 @@ import { GraphQLESLintRuleContext } from "@graphql-eslint/eslint-plugin";
 import { NamedTypeNode, GraphQLSchema, TypeNode } from "graphql";
 
 /**
+ * Given a TypeNode, determine whether it is a list type, ignoring
+ * nullability.
+ */
+export const isListType = (type: TypeNode): boolean => {
+  if (type.kind === "ListType") {
+    return true;
+  }
+  if (type.kind === "NonNullType") {
+    return isListType(type.type);
+  }
+  return false;
+};
+
+/**
  * Given a TypeNode, extract the base NamedType.
  *
  * ExtractNamedType strips off ListTypes and NonNullTypes –
