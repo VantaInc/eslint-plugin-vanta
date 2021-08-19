@@ -67,3 +67,4 @@ Hot tips:
 - [mutations-input-type](/docs/rules/mutations-input-type.md)
 - [public-descendants-public](/docs/rules/public-descendants-public.md)
 - [all-lists-in-connections](docs/rules/all-lists-in-connections.md)
+- [errors-implement-usererror](docs/rules/errors-implement-usererror.md)
