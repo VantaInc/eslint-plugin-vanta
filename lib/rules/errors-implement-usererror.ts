@@ -18,10 +18,8 @@ meta: {
     },
 },
 create(context) : GraphQLESLintRuleListener<false> {
-    const validatePayload = (
-    node:
-        | GraphQLESTreeNode<ObjectTypeExtensionNode>
-        | GraphQLESTreeNode<ObjectTypeDefinitionNode>
+    const validateDefinitionPayload = (
+        node: GraphQLESTreeNode<ObjectTypeDefinitionNode>
     ) => {
         if (
             node.name.value.endsWith("Error") && 
@@ -55,8 +53,29 @@ create(context) : GraphQLESLintRuleListener<false> {
         }
     }
 
+    const validateExtensionPayload = (
+        node: GraphQLESTreeNode<ObjectTypeExtensionNode>
+    ) => {
+        if (
+            !node.name.value.endsWith("Error") &&
+            (
+                node.interfaces &&
+                node.interfaces?.some((int) => 
+                    int.kind === "NamedType" ||
+                    int.name.value === "UserError"
+                )
+            )
+        ) {
+            context.report({
+                node,
+                message: "Types that do not end in 'Error' cannot implement UserError",
+            });
+        }
+    }
+
     return {
-        ObjectTypeDefinition: validatePayload,
+        ObjectTypeDefinition: validateDefinitionPayload,
+        ObjectTypeExtension: validateExtensionPayload,
     };
 },
 };
