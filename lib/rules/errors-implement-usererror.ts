@@ -41,7 +41,7 @@ create(context) : GraphQLESLintRuleListener<false> {
             (
                 node.interfaces &&
                 node.interfaces?.some((int) => 
-                    int.kind === "NamedType" ||
+                    int.kind === "NamedType" &&
                     int.name.value === "UserError"
                 )
             )
@@ -61,7 +61,7 @@ create(context) : GraphQLESLintRuleListener<false> {
             (
                 node.interfaces &&
                 node.interfaces?.some((int) => 
-                    int.kind === "NamedType" ||
+                    int.kind === "NamedType" &&
                     int.name.value === "UserError"
                 )
             )

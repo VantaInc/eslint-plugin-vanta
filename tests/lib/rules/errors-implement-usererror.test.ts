@@ -24,6 +24,13 @@ type PasswordTooWeakError implements UserError {
     },
     {
       code: `
+type NonErrorType implements SomethingElse {
+  cat: String!
+}
+`,
+    },
+    {
+      code: `
 type PasswordTooWeakError implements UserError & OtherType {
   message: String!
   code: ErrorCode!
@@ -35,6 +42,20 @@ type PasswordTooWeakError implements UserError & OtherType {
       code: `
 type NotAnErrorType {
   otherStuff: String!
+}
+`,
+    },
+    {
+      code: `
+extend type NotErrorType implements SomethingElse {
+  passwordRules: [String!]!
+}
+`,
+    },
+    {
+      code: `
+extend type Error implements SomethingElse {
+  passwordRules: [String!]!
 }
 `,
     },
@@ -72,6 +93,14 @@ type PasswordTooWeakError {
     {
       code: `
 type PasswordTooWeakError implements OtherType {
+  passwordRules: [String!]!
+}
+`,
+      errors: 1,
+    },
+    {
+      code: `
+extend type NotErrorType implements UserError {
   passwordRules: [String!]!
 }
 `,
