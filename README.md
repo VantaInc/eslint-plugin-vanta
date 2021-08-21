@@ -56,15 +56,16 @@ Hot tips:
 
 - [common-absolute-import](/docs/rules/common-absolute-import.md)
 - [null-or-undefined-check](/docs/rules/null-or-undefined-check.md)
-- [prefer-maybe](/docs/rules/prefer-maybe.md)
 - [optional-always-maybe](/docs/rules/optional-always-maybe.md)
+- [prefer-maybe](/docs/rules/prefer-maybe.md)
 
 ### GraphQL
 
+- [all-lists-in-connections](docs/rules/all-lists-in-connections.md)
+- [errors-implement-usererror](docs/rules/errors-implement-usererror.md)
 - [mutations-return-payload](/docs/rules/mutations-return-payload.md)
 - [mutations-payloads-unique](/docs/rules/mutations-payloads-unique.md)
 - [mutations-inputs-unique](/docs/rules/mutations-inputs-unique.md)
 - [mutations-input-type](/docs/rules/mutations-input-type.md)
+- [payloads-are-unions](/docs/rules/payloads-are-unions.md)
 - [public-descendants-public](/docs/rules/public-descendants-public.md)
-- [all-lists-in-connections](docs/rules/all-lists-in-connections.md)
-- [errors-implement-usererror](docs/rules/errors-implement-usererror.md)
