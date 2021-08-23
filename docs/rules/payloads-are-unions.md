@@ -4,9 +4,6 @@ A mutation payload must contain a unique success object type with the suffix Suc
 
 ## Rule Details
 
-Best practice is to have a unique `Payload` type for every mutation. This allows us to
-modify any mutation payload without worrying about breaking others.
-
 Autofixer not available.
 
 Examples of **incorrect** code for this rule:
