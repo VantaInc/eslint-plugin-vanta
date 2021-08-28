@@ -8,7 +8,8 @@ import {
   GraphQLESLintRule,
   GraphQLESTreeNode,
 } from "@graphql-eslint/eslint-plugin";
-import { ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
+import { ObjectTypeDefinitionNode } from "graphql";
+import { extractNamedType, isListType } from "../utils/graphqlutils";
 
 const rule: GraphQLESLintRule = {
   meta: {
@@ -21,9 +22,7 @@ const rule: GraphQLESLintRule = {
     },
   },
   create(context) {
-    const validateType = (
-      n: GraphQLESTreeNode<ObjectTypeDefinitionNode>
-    ) => {
+    const validateType = (n: GraphQLESTreeNode<ObjectTypeDefinitionNode>) => {
       const node = n.rawNode();
 
       if (!node.name.value.endsWith("Connection")) {
@@ -38,11 +37,19 @@ const rule: GraphQLESLintRule = {
         });
         return;
       }
-      console.log(edgesField);
-      if (edgesField.type.kind !== "ListType") {
+
+      if (!isListType(edgesField.type)) {
         context.report({
           node: n,
           message: "Edges field must be a list",
+        });
+      }
+
+      const edgeTypeName = extractNamedType(edgesField.type);
+      if (!edgeTypeName.name.value.endsWith("Edge")) {
+        context.report({
+          node: n,
+          message: "edge type must have a suffix `Edge`",
         });
       }
 
@@ -63,10 +70,15 @@ const rule: GraphQLESLintRule = {
         });
         return;
       }
-      if (pageInfoField.type.type.kind !== "NamedType") {
+
+      const pageInfoTypeName = extractNamedType(pageInfoField.type);
+
+      console.log(pageInfoTypeName);
+
+      if (pageInfoTypeName.name.value !== "PageInfo") {
         context.report({
           node: n,
-          message: "pageInfo must be an object type",
+          message: "pageInfo must be of type PageInfo",
         });
       }
     };

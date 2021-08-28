@@ -9,8 +9,32 @@ ruleTester.runGraphQLTests("connections-are-relay-compliant", rule, {
       code: `
 type Connection {
   edges: [testEdge]
-  pageInfo: testPageInfo!
-}            
+  pageInfo: PageInfo!
+}
+`,
+    },
+    {
+      code: `
+type Connection {
+  edges: [testEdge!]!
+  pageInfo: PageInfo!
+}
+`,
+    },
+    {
+      code: `
+type Connection {
+  edges: [testEdge]!
+  pageInfo: PageInfo!
+}
+`,
+    },
+    {
+      code: `
+type Connection {
+  edges: [testEdge!]
+  pageInfo: PageInfo!
+}
 `,
     },
   ],
@@ -18,22 +42,22 @@ type Connection {
     {
       code: `
     type MissingEdgesConnection {
-      pageInfo: test!
+      pageInfo: PageInfo!
     }`,
       errors: 1,
     },
     {
       code: `
       type EdgesNotListConnection {
-        edges: test
-        pageInfo: test!
+        edges: testEdge
+        pageInfo: PageInfo!
       }`,
       errors: 1,
     },
     {
       code: `
       type MissingPageInfoConnection {
-        edges: [test]
+        edges: [testEdge]
       }`,
       errors: 1,
     },
@@ -41,8 +65,8 @@ type Connection {
     {
       code: `
       type PageInfoNotNonnullableConnection {
-        edges: [test]
-        pageInfo: test
+        edges: [testEdge]
+        pageInfo: PageInfo
       }`,
       errors: 1,
     },
@@ -52,6 +76,23 @@ type Connection {
         edges: [test]
         pageInfo: [test]!
       }`,
+      errors: 2,
+    },
+    {
+      code: `
+      type EdgeDoesntEndWithEdgeConnection {
+        edges: [testEdgeNot!]
+        pageInfo: PageInfo!
+      }`,
+      errors: 1,
+    },
+    {
+      code: `
+      type PageInfoWrongTypeConnection {
+        edges: [testNotEdge!]
+        pageInfo: notPageInfo!
+      }
+`,
       errors: 1,
     },
   ],

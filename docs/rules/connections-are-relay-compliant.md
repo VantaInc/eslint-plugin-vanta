@@ -29,6 +29,6 @@ Examples of **correct** code for this rule:
 ```graphql
 type SampleConnection {
   edges: [SampleEdge]
-  pageInfo: SamplePageInfo!
+  pageInfo: PageInfo!
 }
 ```
