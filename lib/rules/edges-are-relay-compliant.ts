@@ -11,6 +11,7 @@ import {
 import { ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
 import {
   extractNamedType,
+  isListType,
   requireGraphQLSchemaFromContext,
 } from "../utils/graphqlutils";
 import {
@@ -20,7 +21,6 @@ import {
   GraphQLScalarType,
   GraphQLUnionType,
   TypeNode,
-  ListTypeNode,
 } from "graphql";
 
 const rule: GraphQLESLintRule = {
@@ -55,32 +55,11 @@ const rule: GraphQLESLintRule = {
         return;
       }
 
-      const validNodeType = (type: TypeNode): boolean => {
-        if (type.kind !== "NamedType") {
-          return false;
-        }
-
-        const nodeFieldType = schema.getType(type.name.value);
-
-        const validNodeFieldType =
-          nodeFieldType instanceof GraphQLScalarType ||
-          nodeFieldType instanceof GraphQLEnumType ||
-          nodeFieldType instanceof GraphQLObjectType ||
-          nodeFieldType instanceof GraphQLInterfaceType ||
-          nodeFieldType instanceof GraphQLUnionType;
-        return validNodeFieldType;
-      };
-
-      const isValidNodeType =
-        nodeField.type.kind === "NonNullType"
-          ? validNodeType(nodeField.type.type)
-          : validNodeType(nodeField.type);
-      if (!isValidNodeType) {
+      if (isListType(nodeField.type)) {
         context.report({
           node: n,
-          message: "Node field is not an acceptable type",
+          message: "Node field cannot be a list",
         });
-        return;
       }
 
       const cursorField = node.fields?.find((f) => f.name.value === "cursor");

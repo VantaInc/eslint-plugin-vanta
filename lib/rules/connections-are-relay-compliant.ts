@@ -73,8 +73,6 @@ const rule: GraphQLESLintRule = {
 
       const pageInfoTypeName = extractNamedType(pageInfoField.type);
 
-      console.log(pageInfoTypeName);
-
       if (pageInfoTypeName.name.value !== "PageInfo") {
         context.report({
           node: n,

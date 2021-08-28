@@ -24,8 +24,30 @@ type T1 {
 type Edge {
     node: T1
     cursor: String
+}`),
+    useSchema(`
+type T1 {
+  a: String
 }
-`),
+
+type Edge {
+    node: T1!
+    cursor: String
+}`),
+    useSchema(`
+type osquery {
+  active: Boolean!
+  domainId: ID
+  hostIdentifier: String!
+  id: ID!
+  node_key: String!
+  platform: String!
+}
+
+type EndpointEdge {
+  cursor: String!
+  node: osquery!
+}`),
   ],
   invalid: [
     {
@@ -58,15 +80,15 @@ type Edge {
       type MissingCursorEdge {
         node: [String]!
       }`),
-      errors: 1,
+      errors: 2,
     },
     {
       ...useSchema(`
       type NotStringCursorEdge {
-        node: [String]!
+        node: String!
         edge: Int
       }`),
       errors: 1,
-    }
+    },
   ],
 });
