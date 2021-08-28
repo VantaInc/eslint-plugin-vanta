@@ -69,3 +69,5 @@ Hot tips:
 - [mutations-input-type](/docs/rules/mutations-input-type.md)
 - [payloads-are-unions](/docs/rules/payloads-are-unions.md)
 - [public-descendants-public](/docs/rules/public-descendants-public.md)
+- [connections-are-relay-compliant](/docs/rules/connections-are-relay-compliant.md)
+- [edges-are-relay-compliant](/docs/rules/edges-are-relay-compliant.md)
