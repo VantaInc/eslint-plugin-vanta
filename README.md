@@ -1,6 +1,11 @@
 # eslint-plugin-vanta
 
-Custom ESLint rules for Vanta
+Custom ESLint rules for Vanta. The TypeScript rules assume the existence of certain primitives, like the `Maybe` type – and may not be useful to codebases other than Vanta's. The GraphQL rules
+enforce various invariants described in our GraphQL style guide.
+
+# Style guide
+
+The public version of our GraphQL style guide can be found [here](/graphql-style.md).
 
 ## Installation
 
