@@ -1,6 +1,5 @@
 /**
  * @fileoverview Prefer Maybe<T> to T | null or T | undefined.
- * @author Robbie Ostrow
  */
 
 import {

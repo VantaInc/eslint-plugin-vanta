@@ -1,6 +1,5 @@
 /**
  * @fileoverview Ensure that all mutations take a single non-nullable input type with the suffix "Input" or have no arguments
- * @author Ellen Finch
  */
 
 import {
@@ -16,8 +15,7 @@ const rule: GraphQLESLintRule = {
       description:
         "All mutations must take a single non-nullable input type with the suffix `Input` or have no arguments",
       category: "Best Practices",
-      url:
-        "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-input-type.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-input-type.md",
     },
   },
   create(context) {

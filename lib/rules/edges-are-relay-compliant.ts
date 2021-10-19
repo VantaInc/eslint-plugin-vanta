@@ -1,7 +1,6 @@
 /**
  * @fileoverview Ensure that all GraphQL Edges are Relay compliant.
  * https://relay.dev/graphql/connections.htm#sec-Edge-Types
- * @author Neil Patil
  */
 
 import {
@@ -14,14 +13,7 @@ import {
   isListType,
   requireGraphQLSchemaFromContext,
 } from "../utils/graphqlutils";
-import {
-  GraphQLEnumType,
-  GraphQLObjectType,
-  GraphQLInterfaceType,
-  GraphQLScalarType,
-  GraphQLUnionType,
-  TypeNode,
-} from "graphql";
+import { TypeNode } from "graphql";
 
 const rule: GraphQLESLintRule = {
   meta: {

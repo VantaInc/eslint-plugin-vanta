@@ -1,6 +1,5 @@
 /**
  * @fileoverview Ensure that all mutations take a unique type
- * @author Ellen Finch
  */
 
 import {

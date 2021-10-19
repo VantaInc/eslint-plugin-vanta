@@ -1,6 +1,5 @@
 /**
  * @fileoverview Ensure that all optional properties and identifiers are of type Maybe<T>.
- * @author Robbie Ostrow
  */
 
 import {

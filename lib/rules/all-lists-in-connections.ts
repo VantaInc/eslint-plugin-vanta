@@ -1,6 +1,5 @@
 /**
  * @fileoverview Lint rule to ensure that all lists are either paginated as part of connections, or marked as explicitly not needing pagination.
- * @author Robbie Ostrow
  */
 
 import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";

@@ -1,6 +1,5 @@
 /**
  * @fileoverview Lint rule to ensure that all types reachable from fields marked as @public are themselves marked as @public.
- * @author Robbie Ostrow
  */
 
 import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
