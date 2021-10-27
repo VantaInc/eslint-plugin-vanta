@@ -1,5 +1,5 @@
 /**
- * @fileoverview Prefer Maybe<T> to T | null or T | undefined.
+ * @fileoverview Ensure that imports from common/ are absolute instead of relative.
  */
 
 import { ESLintUtils } from "@typescript-eslint/experimental-utils";

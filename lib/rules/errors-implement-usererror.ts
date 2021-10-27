@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Ensure that all GraphQL errors implement the `UserError` interface.
+ */
+
 import {
   GraphQLESLintRule,
   GraphQLESLintRuleListener,

@@ -27,11 +27,10 @@ This style guide describes best practices for Vanta's GraphQL API design and imp
     - [2.3.4. When in doubt, write 2 mutations](#234-when-in-doubt-write-2-mutations)
     - [2.3.5. Internal mutations should be prefixed with an underscore](#235-internal-mutations-should-be-prefixed-with-an-underscore)
   - [2.4. Guidelines for Queries](#24-guidelines-for-queries)
-    - [2.4.1. Queries must be categorized into one of four basic types](#241-queries-must-be-categorized-into-one-of-four-basic-types)
-    - [2.4.2. When in doubt, write 2 queries](#242-when-in-doubt-write-2-queries)
-    - [2.4.3. Use default arguments](#243-use-default-arguments)
-    - [2.4.4. Offer a plural form for queries](#244-offer-a-plural-form-for-queries)
-    - [2.4.5. Everywhere we return a list of non-constant length, paginate](#245-everywhere-we-return-a-list-of-non-constant-length-paginate)
+    - [2.4.1. When in doubt, write 2 queries](#241-when-in-doubt-write-2-queries)
+    - [2.4.2. Use default arguments](#242-use-default-arguments)
+    - [2.4.3. Offer a plural form for queries](#243-offer-a-plural-form-for-queries)
+    - [2.4.4. Everywhere we return a list of non-constant length, paginate](#244-everywhere-we-return-a-list-of-non-constant-length-paginate)
   - [2.5. Pagination](#25-pagination)
     - [2.5.1. Use the Relay spec](#251-use-the-relay-spec)
     - [2.5.2. No more than 100 results per page](#252-no-more-than-100-results-per-page)
@@ -57,7 +56,7 @@ Without tooling, schema-first API design can be difficult to maintain. To enforc
 
 > ### Automatically enforced rules
 >
-> We use [graphql-eslint](https://github.com/graphql-eslint/graphql-eslint) to enforce many style rules across our schema. Consider our eslint file to be the source of truth for programmatically-enforceable style rules – there's no need to get into specific conventions in this document. If you find that there is an inconsistency between this document and our linter, please open a PR.
+> We use [graphql-eslint](https://github.com/graphql-eslint/graphql-eslint) to enforce many style rules across our schema.
 >
 > In addition to the rules provided by graphql-eslint, we define our own rules in [eslint-plugin-vanta](https://github.com/VantaInc/eslint-plugin-vanta). Don't be afraid to introduce a new lint rule by submitting a PR to that repo and adding it to our linter!
 >
@@ -349,9 +348,9 @@ Logic errors fall into a few different subtypes:
 
 1. VantaAuthenticationErrors - user is unauthenticated. This is an ApolloError extending the AuthenticationError type.
 2. VantaForbiddenErrors - user is unauthorized. This is an ApolloError extending the ForbiddenError type.
-3. ResourceNotFoundErrors - a resource we tried to look up doesn't exist. Note that this should also be used for resources that do exist but the user cannot access. This is a custom ApolloError type.
+3. ResourceNotFoundErrors - a resource we tried to look up doesn't exist. Note that this should also be used for resources that do exist but which the user cannot access. This is a custom ApolloError type.
 4. InvalidInputErrors - something about the shape of the input was wrong, for example, SLA value was a negative number, startDate value was after endDate value, etc. Use this for cases where the client could have validated that the input was incorrect. This is an ApolloError extending the UserInputError type.
-5. other expected user errors- user tried to do something illegal given our business logic, for example, uploading a disallowed file type, trying to remove the last admin from a domain, etc. These errors are considered part of our API and should explicitly be part of the schema as types extending BaseUserError.
+5. other expected user errors- user tried to do something illegal given our business logic, for example, uploading a disallowed file type. These errors are considered part of our API and should explicitly be part of the schema as types extending BaseUserError.
 
 Queries should only ever use ApolloErrors, never UserErrors. [Queries that take list input and return list output](#244-offer-a-plural-form-for-queries) should not throw resource not found, but should return null values in the list for any missing resources.
 
@@ -660,11 +659,7 @@ Mutations that are accessible only to internal Vanta users should be prefixed wi
 
 ## 2.4. Guidelines for Queries
 
-### 2.4.1. Queries must be categorized into one of four basic types
-
-...snip...
-
-### 2.4.2. When in doubt, write 2 queries
+### 2.4.1. When in doubt, write 2 queries
 
 See [the equivalent mutation rule](#234-when-in-doubt-write-2-mutations) above.
 
@@ -687,7 +682,7 @@ type Query {
 }
 ```
 
-### 2.4.3. Use default arguments
+### 2.4.2. Use default arguments
 
 We want our API to be self-documenting when possible. Instead of providing a nullable parameter that requires documentation, provide a default value when it makes sense to do so.
 
@@ -710,7 +705,7 @@ type Query {
 }
 ```
 
-### 2.4.4. Offer a plural form for queries
+### 2.4.3. Offer a plural form for queries
 
 Usually, when there is a need for a query that selects a single object by some identifier, it is just as useful to have a more powerful query that selects multiple objects at a time.
 
@@ -745,7 +740,7 @@ type Query {
 
 Queries that take a list as a parameter must return a list of the same length, where the index of each result is the same as the index of the corresponding parameter.
 
-### 2.4.5. Everywhere we return a list of non-constant length, paginate
+### 2.4.4. Everywhere we return a list of non-constant length, paginate
 
 An API consumer might ask for all of the users in their domain or all resources of some type. As our customers become more complex, these queries may return thousands or even hundreds of thousands of results. To guarantee reasonable performance invariants, we must offer paginated fields for all queries that return lists of results. We should not offer non-paginated alternatives.
 
@@ -753,7 +748,7 @@ See the [pagination section](#25-pagination) for details about pagination.
 
 > Relevant lint rules:
 >
-> - [all-lists-in-connections](TODO) (List types must be parts of connections or be whitelisted as constant length)
+> - [all-lists-in-connections](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/all-lists-in-connections.md) (List types must be parts of connections or be whitelisted as constant length)
 
 ## 2.5. Pagination
 
@@ -958,7 +953,7 @@ query q {
 
 A naive implementation would be to do a database call to get the list of users, then another database call per (user, friend) pair to get the friend's name. This means that we need to make up to n^2 database calls to get the data we need!
 
-We're doing a lot of redundant work here, though – we've already fetched all of the friends' names in the initial user list call. But we don't want to rewrite our logic to do extra work in the user list call since that would violate our principle of [lazyness](#31-resolvers-should-be-as-lazy-as-possible).
+We're doing a lot of redundant work here, though – we've already fetched all of the friends' names in the initial user list call. But we don't want to rewrite our logic to do extra work in the user list call since that would violate our principle of [laziness](#31-resolvers-should-be-as-lazy-as-possible).
 
 Instead, we use a [DataLoader](https://github.com/graphql/dataloader). A DataLoader is a caching mechanism that allows you to request a single bit of data at each point in the graph, but it batches all of the requests together so redundant requests are only made once.
 
@@ -976,8 +971,6 @@ query q {
   }
 }
 ```
-
-We have a helper type called `makeDataloaderFn` in [dataloaderHelpers.ts](snip). Use it!
 
 > The [DataLoader README](https://github.com/graphql/dataloader#readme) does a more thorough job of explaining how and why to use DataLoaders.
 
@@ -1012,11 +1005,11 @@ We will introduce strict performance guidelines in the future, but for now, just
 
 ## 3.6. Authorization
 
-All queries and mutations must have an explicit authorization rule defined. These rules are defined in the [permissioning directory](Snip).
+All queries and mutations must have an explicit authorization rule defined.
 
 Individual types and fields can also define authorization rules, but it's less common that this is necessary.
 
-To prevent graph traversal vulnerabilities, ensure that the graph is structured in such a way that sensitive fields are never accessible from non-sensitive fields. See the [@public directive lint rule](Snip) for more information.
+To prevent graph traversal vulnerabilities, ensure that the graph is structured in such a way that sensitive fields are never accessible from non-sensitive fields. See the [@public directive lint rule](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/public-descendants-public.md) for more information.
 
 ## 3.7. Do not use GraphQL as an IPC layer
 

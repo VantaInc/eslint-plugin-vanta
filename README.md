@@ -1,6 +1,6 @@
 # eslint-plugin-vanta
 
-Custom ESLint rules for Vanta. The TypeScript rules assume the existence of certain primitives, like the `Maybe` type – and may not be useful to codebases other than Vanta's. The GraphQL rules
+Custom ESLint rules for Vanta. The TypeScript rules assume the existence of certain primitives, like the `Maybe` type, and may not be useful to codebases other than Vanta's. The GraphQL rules
 enforce various invariants described in our GraphQL style guide.
 
 # Style guide
@@ -67,12 +67,12 @@ Hot tips:
 ### GraphQL
 
 - [all-lists-in-connections](docs/rules/all-lists-in-connections.md)
-- [errors-implement-usererror](docs/rules/errors-implement-usererror.md)
-- [mutations-return-payload](/docs/rules/mutations-return-payload.md)
-- [mutations-payloads-unique](/docs/rules/mutations-payloads-unique.md)
-- [mutations-inputs-unique](/docs/rules/mutations-inputs-unique.md)
-- [mutations-input-type](/docs/rules/mutations-input-type.md)
-- [payloads-are-unions](/docs/rules/payloads-are-unions.md)
-- [public-descendants-public](/docs/rules/public-descendants-public.md)
 - [connections-are-relay-compliant](/docs/rules/connections-are-relay-compliant.md)
 - [edges-are-relay-compliant](/docs/rules/edges-are-relay-compliant.md)
+- [errors-implement-usererror](docs/rules/errors-implement-usererror.md)
+- [mutations-input-type](/docs/rules/mutations-input-type.md)
+- [mutations-inputs-unique](/docs/rules/mutations-inputs-unique.md)
+- [mutations-payloads-unique](/docs/rules/mutations-payloads-unique.md)
+- [mutations-return-payload](/docs/rules/mutations-return-payload.md)
+- [payloads-are-unions](/docs/rules/payloads-are-unions.md)
+- [public-descendants-public](/docs/rules/public-descendants-public.md)
