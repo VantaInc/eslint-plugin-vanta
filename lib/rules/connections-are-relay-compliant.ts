@@ -1,7 +1,6 @@
 /**
  * @fileoverview Ensure that all GraphQL Connections are Relay compliant.
  * https://relay.dev/graphql/connections.htm#sec-Connection-Types
- * @author Neil Patil
  */
 
 import {

@@ -1,6 +1,5 @@
 /**
  * @fileoverview Ensure that all mutations return a nullable type with the suffix "Payload"
- * @author Robbie Ostrow
  */
 
 import {
