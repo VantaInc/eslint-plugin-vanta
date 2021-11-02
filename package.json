@@ -14,8 +14,7 @@
   "scripts": {
     "test": "mocha tests --recursive",
     "build": "tsc",
-    "build-and-test": "npm run build && npm run test",
-    "postinstall": "npm i --ignore-scripts && npm run build"
+    "build-and-test": "npm run build && npm run test"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
