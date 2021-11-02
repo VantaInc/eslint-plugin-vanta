@@ -1,5 +1,5 @@
 {
-  "name": "@VantaInc/eslint-plugin-vanta",
+  "name": "eslint-plugin-vanta",
   "version": "0.0.1",
   "repository": "git://github.com/VantaInc/eslint-plugin-vanta.git",
   "description": "Custom ESLint rules for Vanta",
@@ -14,7 +14,8 @@
   "scripts": {
     "test": "mocha tests --recursive",
     "build": "tsc",
-    "build-and-test": "npm run build && npm run test"
+    "build-and-test": "npm run build && npm run test",
+    "release": "npm run build && npm publish"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
