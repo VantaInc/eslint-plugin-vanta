@@ -1,11 +1,13 @@
 {
-  "name": "eslint-plugin-vanta",
+  "name": "@VantaInc/eslint-plugin-vanta",
   "version": "0.0.1",
+  "repository": "git://github.com/VantaInc/eslint-plugin-vanta.git",
   "description": "Custom ESLint rules for Vanta",
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "vanta"
   ],
   "author": "Robbie Ostrow",
   "main": "lib/index.js",
