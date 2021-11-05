@@ -255,9 +255,9 @@ type Cat implements Animal {
 
 ### 2.1.8. No type should depend on a sibling type to get relevant information
 
-If there is a relationship between two types, expose the relationship in the graph – one should be a child of the other. They can also be children of one other.
+If there is a relationship between two types, expose the relationship in the graph – one should be a child of the other. They can also be children of one another.
 
-This allows the client to avoid complicated joins in most cases, and only fetch the necessary data.
+In other words, avoid having fields on types that are simply IDs of other types. This allows the client to avoid complicated joins in most cases, and only fetch the necessary data.
 
 Bad:
 
