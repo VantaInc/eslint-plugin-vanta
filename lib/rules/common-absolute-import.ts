@@ -12,7 +12,6 @@ const rule = ESLintUtils.RuleCreator(
   meta: {
     fixable: "code",
     docs: {
-      category: "Possible Errors",
       description: "Import common/ from its absolute path",
       recommended: "error",
     },

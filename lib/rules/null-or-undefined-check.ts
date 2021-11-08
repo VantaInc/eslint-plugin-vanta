@@ -16,7 +16,6 @@ const rule = ESLintUtils.RuleCreator(
   meta: {
     fixable: "code",
     docs: {
-      category: "Stylistic Issues",
       description: "Use isSome(expr) to check against undefined or null.",
       recommended: "error",
     },
