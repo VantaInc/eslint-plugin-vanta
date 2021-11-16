@@ -40,7 +40,7 @@ const rule = ESLintUtils.RuleCreator(
         } else {
           return;
         }
-        let variableExpr: TSESTree.Expression | PrivateIdentifier;
+        let variableExpr: TSESTree.Node | undefined;
         if (
           (node.left.type === AST_NODE_TYPES.Literal &&
             node.left.value === null) ||
