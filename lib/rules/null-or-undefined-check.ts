@@ -7,6 +7,7 @@ import {
   TSESTree,
   ESLintUtils,
 } from "@typescript-eslint/experimental-utils";
+import { PrivateIdentifier } from "typescript";
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>
@@ -39,7 +40,7 @@ const rule = ESLintUtils.RuleCreator(
         } else {
           return;
         }
-        let variableExpr: TSESTree.Expression;
+        let variableExpr: TSESTree.Expression | PrivateIdentifier;
         if (
           (node.left.type === AST_NODE_TYPES.Literal &&
             node.left.value === null) ||
