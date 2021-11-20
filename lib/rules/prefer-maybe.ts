@@ -20,7 +20,6 @@ const rule = ESLintUtils.RuleCreator(
   meta: {
     fixable: "code",
     docs: {
-      category: "Stylistic Issues",
       description: "Prefer Maybe<T> to T | null or T | undefined.",
       recommended: "error",
     },

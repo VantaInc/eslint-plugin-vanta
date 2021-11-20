@@ -16,7 +16,6 @@ const rule = ESLintUtils.RuleCreator(
   meta: {
     fixable: "code",
     docs: {
-      category: "Stylistic Issues",
       description: "Optional properties must be of type Maybe<T>",
       recommended: "error",
     },
