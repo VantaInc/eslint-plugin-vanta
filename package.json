@@ -1,7 +1,6 @@
 {
-  "name": "eslint-plugin-vanta",
+  "name": "@vanta-inc/eslint-plugin-vanta",
   "version": "0.0.1",
-  "repository": "git://github.com/VantaInc/eslint-plugin-vanta.git",
   "description": "Custom ESLint rules for Vanta",
   "keywords": [
     "eslint",
@@ -15,7 +14,7 @@
     "test": "mocha tests --recursive",
     "build": "tsc",
     "build-and-test": "npm run build && npm run test",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && npm publish --access=public"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
@@ -37,5 +36,18 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "ISC"
+  "license": "Apache-2.0",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VantaInc/eslint-plugin-vanta.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VantaInc/eslint-plugin-vanta/issues"
+  },
+  "homepage": "https://github.com/VantaInc/eslint-plugin-vanta#readme"
 }
