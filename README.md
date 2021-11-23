@@ -18,7 +18,7 @@ $ npm i eslint --save-dev
 Next, install `eslint-plugin-vanta`:
 
 ```
-$ npm install eslint-plugin-vanta --save-dev
+$ npm install @vanta-inc/eslint-plugin-vanta --save-dev
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ Add `vanta` to the plugins section of your `.eslintrc` configuration file. You c
 
 ```json
 {
-  "plugins": ["vanta"]
+  "plugins": ["@vanta-inc/eslint-plugin-vanta"]
 }
 ```
 
@@ -36,7 +36,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "vanta/rule-name": 2
+    "@vanta-inc/vanta/rule-name": 2
   }
 }
 ```
