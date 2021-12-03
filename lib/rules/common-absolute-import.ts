@@ -6,7 +6,7 @@ import { ESLintUtils } from "@typescript-eslint/experimental-utils";
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>
-    `https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/${ruleName}.md`
+    `https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/${ruleName}.md`
 )<unknown[], "default">({
   name: "common-absolute-import",
   meta: {

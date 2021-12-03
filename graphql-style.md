@@ -411,7 +411,7 @@ This way, adding new error types to the union doesn't break clients.
 
 > Relevant lint rules:
 >
-> - [errors-implement-usererror](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/errors-implement-usererror.md) (link to lint rule enforcing A type should extend the `UserError` interface iff its name ends with `Error`)
+> - [errors-implement-usererror](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/errors-implement-usererror.md) (link to lint rule enforcing A type should extend the `UserError` interface iff its name ends with `Error`)
 
 ### 2.2.2. Use the GraphQL `errors` key to return other errors
 
@@ -584,9 +584,9 @@ type PasswordTooWeakError implements UserError {
 
 > Relevant lint rules:
 >
-> - [mutations-return-payload](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-return-payload.md)
-> - [mutations-payloads-unique](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-payloads-unique.md)
-> - [payloads-are-unions](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/payloads-are-unions.md)
+> - [mutations-return-payload](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-return-payload.md)
+> - [mutations-payloads-unique](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-payloads-unique.md)
+> - [payloads-are-unions](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/payloads-are-unions.md)
 
 ### 2.3.3. Mutations must take a single, unique argument called `input`
 
@@ -594,8 +594,8 @@ Having a unique `input` type for each mutation makes it easier for clients to pa
 
 > Relevant lint rules:
 >
-> - [mutation-input-type](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-input-type.md)
-> - [mutations-inputs-unique](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-inputs-unique.md)
+> - [mutation-input-type](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-input-type.md)
+> - [mutations-inputs-unique](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-inputs-unique.md)
 
 ### 2.3.4. When in doubt, write 2 mutations
 
@@ -748,7 +748,7 @@ See the [pagination section](#25-pagination) for details about pagination.
 
 > Relevant lint rules:
 >
-> - [all-lists-in-connections](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/all-lists-in-connections.md) (List types must be parts of connections or be whitelisted as constant length)
+> - [all-lists-in-connections](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/all-lists-in-connections.md) (List types must be parts of connections or be whitelisted as constant length)
 
 ## 2.5. Pagination
 
@@ -758,8 +758,8 @@ We use [relay-style pagination](https://relay.dev/graphql/connections.htm). I wo
 
 > Relevant lint rules:
 >
-> - [connections-are-relay-compliant](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/connections-are-relay-compliant.md) (Any type that ends in `Connection` must be a relay connection.)
-> - [edges-are-relay-compliant](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/edges-are-relay-compliant.md) (Any type that ends in `edge` must be a relay edge)
+> - [connections-are-relay-compliant](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/connections-are-relay-compliant.md) (Any type that ends in `Connection` must be a relay connection.)
+> - [edges-are-relay-compliant](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/edges-are-relay-compliant.md) (Any type that ends in `edge` must be a relay edge)
 
 ### 2.5.2. No more than 100 results per page
 
@@ -1009,7 +1009,7 @@ All queries and mutations must have an explicit authorization rule defined.
 
 Individual types and fields can also define authorization rules, but it's less common that this is necessary.
 
-To prevent graph traversal vulnerabilities, ensure that the graph is structured in such a way that sensitive fields are never accessible from non-sensitive fields. See the [@public directive lint rule](https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/public-descendants-public.md) for more information.
+To prevent graph traversal vulnerabilities, ensure that the graph is structured in such a way that sensitive fields are never accessible from non-sensitive fields. See the [@public directive lint rule](https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/public-descendants-public.md) for more information.
 
 ## 3.7. Do not use GraphQL as an IPC layer
 

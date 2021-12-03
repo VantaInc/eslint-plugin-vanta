@@ -11,7 +11,7 @@ const rule: GraphQLESLintRule = {
       description:
         "Payloads are unions of a success type and one or more error types",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/payloads-are-unions.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/payloads-are-unions.md",
     },
   },
   create(context) {

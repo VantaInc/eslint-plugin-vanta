@@ -19,7 +19,7 @@ const rule: GraphQLESLintRule = {
       description:
         "A type should implement the UserError interface if and only if its name ends with Error.",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/errors-implement-usererror.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/errors-implement-usererror.md",
     },
   },
   create(context): GraphQLESLintRuleListener<false> {

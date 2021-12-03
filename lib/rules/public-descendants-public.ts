@@ -24,7 +24,7 @@ const rule: GraphQLESLintRule = {
       description:
         "Ensures that all types reachable from fields marked as @public are themselves marked as @public.",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/public-descendants-public.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/public-descendants-public.md",
     },
   },
   create(context) {
