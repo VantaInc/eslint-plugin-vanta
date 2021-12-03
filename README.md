@@ -63,6 +63,7 @@ Hot tips:
 - [null-or-undefined-check](/docs/rules/null-or-undefined-check.md)
 - [optional-always-maybe](/docs/rules/optional-always-maybe.md)
 - [prefer-maybe](/docs/rules/prefer-maybe.md)
+- [mongoose-naming-convention](/docs/rules/mongoose-naming-convention.md)
 
 ### GraphQL
 

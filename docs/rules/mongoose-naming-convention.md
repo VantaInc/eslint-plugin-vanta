@@ -1,4 +1,4 @@
-# Follow naming conventions for Mongoose models and schemas.
+# Follow naming conventions for Mongoose models and schemas. (mongoose-naming-convention)
 
 Identifiers for mongoose models and schemas should always be appropriately suffixed with 'Fields', 'Doc', or 'Model', and must share the same prefix.
 
