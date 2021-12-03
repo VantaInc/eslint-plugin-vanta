@@ -15,7 +15,7 @@ const rule: GraphQLESLintRule = {
       description:
         "All mutations must return a nullable type with the suffix `Payload`",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/mutations-return-payload.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-return-payload.md",
     },
   },
   create(context) {

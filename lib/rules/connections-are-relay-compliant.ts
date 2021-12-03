@@ -17,7 +17,7 @@ const rule: GraphQLESLintRule = {
       description:
         "All Connection GraphQL types must implement the interface specified by the Relay cursor spec.",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/connections-are-relay-compliant.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/connections-are-relay-compliant.md",
     },
   },
   create(context) {

@@ -22,7 +22,7 @@ const rule: GraphQLESLintRule = {
       description:
         "All Edge GraphQL types must implement the interface specified by the Relay cursor spec.",
       category: "Best Practices",
-      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/edges-are-relay-compliant.md",
+      url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/edges-are-relay-compliant.md",
     },
   },
   create(context) {

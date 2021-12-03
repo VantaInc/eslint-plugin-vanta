@@ -14,7 +14,7 @@ const NOTHING_TYPES = [
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>
-    `https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/${ruleName}.md`
+    `https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/${ruleName}.md`
 )<unknown[], "default">({
   name: "prefer-maybe",
   meta: {
