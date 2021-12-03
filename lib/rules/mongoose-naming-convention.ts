@@ -91,9 +91,10 @@ const rule = ESLintUtils.RuleCreator(
           });
           return;
         }
-        const typeAliasNamePrefix = typeAliasName.split(
-          EXPECTED_TYPE_ALIAS_SUFFIX
-        )[0];
+        const typeAliasNamePrefix = typeAliasName.slice(
+          0,
+          -EXPECTED_TYPE_ALIAS_SUFFIX.length
+        );
         const intersection = context
           .getAncestors()
           .slice(-1)[0] as TSESTree.TSIntersectionType;
@@ -119,9 +120,10 @@ const rule = ESLintUtils.RuleCreator(
             });
             return;
           }
-          const siblingTypeNamePrefix = siblingTypeName.split(
-            EXPECTED_INTERSECTION_TYPE_NAME_SUFFIX
-          )[0];
+          const siblingTypeNamePrefix = siblingTypeName.slice(
+            0,
+            -EXPECTED_INTERSECTION_TYPE_NAME_SUFFIX.length
+          );
           if (typeAliasNamePrefix !== siblingTypeNamePrefix) {
             context.report({
               node: sibling,
@@ -177,12 +179,14 @@ const rule = ESLintUtils.RuleCreator(
             });
             return;
           }
-          const variableDeclarationNamePrefix = variableDeclarationName.split(
-            EXPECTED_MODEL_VARIABLE_SUFFIX
-          )[0];
-          const documentTypeNamePrefix = documentTypeName.split(
-            EXPECTED_TYPE_ALIAS_SUFFIX
-          )[0];
+          const variableDeclarationNamePrefix = variableDeclarationName.slice(
+            0,
+            -EXPECTED_MODEL_VARIABLE_SUFFIX.length
+          );
+          const documentTypeNamePrefix = documentTypeName.slice(
+            0,
+            -EXPECTED_TYPE_ALIAS_SUFFIX.length
+          );
           if (variableDeclarationNamePrefix !== documentTypeNamePrefix) {
             context.report({
               node,

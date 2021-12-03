@@ -35,6 +35,9 @@ ruleTester.run("mongoose-naming-convention", rule, {
     {
       code: `const UserModel = model<UserDoc>("User", UserSchema);`,
     },
+    {
+      code: `const DocumentModel = model<DocumentDoc>("Document", DocumentSchema);`,
+    },
   ],
   invalid: [
     {
