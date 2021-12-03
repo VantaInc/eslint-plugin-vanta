@@ -69,7 +69,7 @@ const rule = ESLintUtils.RuleCreator(
     const sourceCode = context.getSourceCode();
 
     return {
-      "TSTypeAliasDeclaration TSIntersectionType TSTypeReference": (
+      "TSTypeAliasDeclaration > TSIntersectionType > TSTypeReference": (
         node: TSESTree.TSTypeReference
       ): void => {
         if (
@@ -136,64 +136,65 @@ const rule = ESLintUtils.RuleCreator(
         });
         return;
       },
-      "VariableDeclaration CallExpression TSTypeReference": (
-        node: TSESTree.TSTypeReference
-      ): void => {
-        const callExpressionNode = context
-          .getAncestors()
-          .slice(-2)[0] as TSESTree.CallExpression;
-        if (
-          !MONGOOSE_MODEL_TYPE_NODE_IDENTIFIERS.has(
-            sourceCode.getText(callExpressionNode.callee)
-          )
-        ) {
-          return;
-        }
-        const variableDeclaratorNode = context
-          .getAncestors()
-          .slice(-3)[0] as TSESTree.VariableDeclarator;
-        const variableDeclarationName = sourceCode.getText(
-          variableDeclaratorNode.id
-        );
-        if (!variableDeclarationName.endsWith(EXPECTED_MODEL_VARIABLE_SUFFIX)) {
-          context.report({
-            node: variableDeclaratorNode.id,
-            messageId: "mongooseModelNaming",
-            data: {
-              variableName: sourceCode.getText(variableDeclaratorNode.id),
-            },
-          });
-          return;
-        }
-        const documentTypeName = sourceCode.getText(node);
-        if (!documentTypeName.endsWith(EXPECTED_TYPE_ALIAS_SUFFIX)) {
-          context.report({
-            node,
-            messageId: "mongooseModelDocumentTypeNaming",
-            data: {
-              documentTypeName,
-            },
-          });
-          return;
-        }
-        const variableDeclarationNamePrefix = variableDeclarationName.split(
-          EXPECTED_MODEL_VARIABLE_SUFFIX
-        )[0];
-        const documentTypeNamePrefix = documentTypeName.split(
-          EXPECTED_TYPE_ALIAS_SUFFIX
-        )[0];
-        if (variableDeclarationNamePrefix !== documentTypeNamePrefix) {
-          context.report({
-            node,
-            messageId: "mongooseModelDocumentTypeMismatch",
-            data: {
-              variableDeclarationNamePrefix,
-              documentTypeNamePrefix,
-            },
-          });
-          return;
-        }
-      },
+      "VariableDeclarator > CallExpression > TSTypeParameterInstantiation > TSTypeReference":
+        (node: TSESTree.TSTypeReference): void => {
+          const callExpressionNode = context
+            .getAncestors()
+            .slice(-2)[0] as TSESTree.CallExpression;
+          if (
+            !MONGOOSE_MODEL_TYPE_NODE_IDENTIFIERS.has(
+              sourceCode.getText(callExpressionNode.callee)
+            )
+          ) {
+            return;
+          }
+          const variableDeclaratorNode = context
+            .getAncestors()
+            .slice(-3)[0] as TSESTree.VariableDeclarator;
+          const variableDeclarationName = sourceCode.getText(
+            variableDeclaratorNode.id
+          );
+          if (
+            !variableDeclarationName.endsWith(EXPECTED_MODEL_VARIABLE_SUFFIX)
+          ) {
+            context.report({
+              node: variableDeclaratorNode.id,
+              messageId: "mongooseModelNaming",
+              data: {
+                variableName: sourceCode.getText(variableDeclaratorNode.id),
+              },
+            });
+            return;
+          }
+          const documentTypeName = sourceCode.getText(node);
+          if (!documentTypeName.endsWith(EXPECTED_TYPE_ALIAS_SUFFIX)) {
+            context.report({
+              node,
+              messageId: "mongooseModelDocumentTypeNaming",
+              data: {
+                documentTypeName,
+              },
+            });
+            return;
+          }
+          const variableDeclarationNamePrefix = variableDeclarationName.split(
+            EXPECTED_MODEL_VARIABLE_SUFFIX
+          )[0];
+          const documentTypeNamePrefix = documentTypeName.split(
+            EXPECTED_TYPE_ALIAS_SUFFIX
+          )[0];
+          if (variableDeclarationNamePrefix !== documentTypeNamePrefix) {
+            context.report({
+              node,
+              messageId: "mongooseModelDocumentTypeMismatch",
+              data: {
+                variableDeclarationNamePrefix,
+                documentTypeNamePrefix,
+              },
+            });
+            return;
+          }
+        },
     };
   },
 });
