@@ -30,7 +30,7 @@ const EXPECTED_MODEL_VARIABLE_SUFFIX = "Model";
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>
-    `https://github.com/VantaInc/eslint-plugin-vanta/blob/master/docs/rules/${ruleName}.md`
+    `https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/${ruleName}.md`
 )<
   unknown[],
   | "mongooseDocumentNaming"
@@ -77,9 +77,14 @@ const rule = ESLintUtils.RuleCreator(
         ) {
           return;
         }
-        const typeAliasDeclaration = context
-          .getAncestors()
-          .slice(-2)[0] as TSESTree.TSTypeAliasDeclaration;
+        const ancestors = context.getAncestors();
+        const intersection = ancestors.slice(
+          -1
+        )[0] as TSESTree.TSIntersectionType;
+        const typeAliasDeclaration = ancestors.slice(
+          -2
+        )[0] as TSESTree.TSTypeAliasDeclaration;
+
         const typeAliasName = typeAliasDeclaration.id.name;
         if (!typeAliasName.endsWith(EXPECTED_TYPE_ALIAS_SUFFIX)) {
           context.report({
@@ -95,9 +100,6 @@ const rule = ESLintUtils.RuleCreator(
           0,
           -EXPECTED_TYPE_ALIAS_SUFFIX.length
         );
-        const intersection = context
-          .getAncestors()
-          .slice(-1)[0] as TSESTree.TSIntersectionType;
         const siblingTypes = intersection.types.filter(
           (type) =>
             !MONGOOSE_DOCUMENT_TYPE_NODE_IDENTIFIERS.has(
@@ -140,9 +142,14 @@ const rule = ESLintUtils.RuleCreator(
       },
       "VariableDeclarator > CallExpression > TSTypeParameterInstantiation > TSTypeReference":
         (node: TSESTree.TSTypeReference): void => {
-          const callExpressionNode = context
-            .getAncestors()
-            .slice(-2)[0] as TSESTree.CallExpression;
+          const ancestors = context.getAncestors();
+          const callExpressionNode = ancestors.slice(
+            -2
+          )[0] as TSESTree.CallExpression;
+          const variableDeclaratorNode = ancestors.slice(
+            -3
+          )[0] as TSESTree.VariableDeclarator;
+
           if (
             !MONGOOSE_MODEL_TYPE_NODE_IDENTIFIERS.has(
               sourceCode.getText(callExpressionNode.callee)
@@ -150,9 +157,6 @@ const rule = ESLintUtils.RuleCreator(
           ) {
             return;
           }
-          const variableDeclaratorNode = context
-            .getAncestors()
-            .slice(-3)[0] as TSESTree.VariableDeclarator;
           const variableDeclarationName = sourceCode.getText(
             variableDeclaratorNode.id
           );

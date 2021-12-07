@@ -39,5 +39,5 @@ Examples of **correct** code for this rule:
 ```ts
 type CollectionFields = typeof CollectionSchema;
 type CollectionDoc = CollectionFields & mongoose.Document;
-const collectionModel = model<CollectionDoc>(schema, options);
+const CollectionModel = model<CollectionDoc>(schema, options);
 ```
