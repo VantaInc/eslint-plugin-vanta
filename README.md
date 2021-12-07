@@ -60,6 +60,7 @@ Hot tips:
 ### TypeScript
 
 - [common-absolute-import](/docs/rules/common-absolute-import.md)
+- [server-common-absolute-import](/docs/rules/server-common-absolute-import.md)
 - [null-or-undefined-check](/docs/rules/null-or-undefined-check.md)
 - [optional-always-maybe](/docs/rules/optional-always-maybe.md)
 - [prefer-maybe](/docs/rules/prefer-maybe.md)
