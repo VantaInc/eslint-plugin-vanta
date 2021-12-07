@@ -1,6 +1,5 @@
 /**
  * @fileoverview Ensure that imports from server-common/ are absolute instead of relative.
- * @author Robbie Ostrow
  */
 
  import rule from "../../../lib/rules/server-common-absolute-import";
