@@ -204,7 +204,7 @@ type CanadianAddress {
 }
 ```
 
-Another way to express this idea is: write types such that the number of non-nullable types is minimized. The type system should express constraints without requiring domain-specific knowledge from the api consumer.
+Another way to express this idea is: write types such that the number of nullable types is minimized. The type system should express constraints without requiring domain-specific knowledge from the api consumer.
 
 This rule applies across our whole schema – several rules regarding [input types](#233-mutations-must-take-a-single-unique-argument-called-input) and [errors](#221-use-union-types-to-express-user-errors) are also implied by this philosophy.
 
