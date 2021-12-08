@@ -1,6 +1,5 @@
 /**
  * @fileoverview Prefer isSome(expr) to checking against undefined or null
- * @author Robbie Ostrow
  */
 
 import rule from "../../../lib/rules/optional-always-maybe";

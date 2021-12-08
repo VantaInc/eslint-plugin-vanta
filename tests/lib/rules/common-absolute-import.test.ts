@@ -1,6 +1,5 @@
 /**
- * @fileoverview Prefer isSome(expr) to checking against undefined or null
- * @author Robbie Ostrow
+ * @fileoverview Ensure that imports from common/ are absolute instead of relative.
  */
 
 import rule from "../../../lib/rules/common-absolute-import";
@@ -14,7 +13,7 @@ const ruleTester = new TSESLint.RuleTester({
   ),
 });
 
-ruleTester.run("prefer-maybe", rule, {
+ruleTester.run("common-absolute-import", rule, {
   valid: [
     {
       code: `import * as _ from "lodash"`,
