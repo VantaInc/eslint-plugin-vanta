@@ -40,6 +40,11 @@ ruleTester.run("common-absolute-import", rule, {
       errors: [{ messageId: "default", line: 1, column: 1 }],
     },
     {
+      code: `import { Maybe } from "common/src/base/types/maybe"`,
+      output: `import { Maybe } from "common/base/types/maybe"`,
+      errors: [{ messageId: "default", line: 1, column: 1 }],
+    },
+    {
       code: `
 import {
   Maybe,

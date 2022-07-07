@@ -27,9 +27,8 @@ const absoluteImportRule = (folder: string) => {
     defaultOptions: [],
     create(context) {
       const badCommonImportRegex = new RegExp(
-        `\.\.\/.*\/?(${folder}\/)src\/(.*)`
+        `(\.\.\/)*?(${folder}\/)src\/(.*)`
       );
-      //   const badCommonImportRegex = /\.\.\/.*\/?(server-common\/)src\/(.*)/s;
       return {
         ImportDeclaration(node) {
           if (typeof node.source.value !== "string") {
@@ -41,7 +40,7 @@ const absoluteImportRule = (folder: string) => {
           }
           const replacement = node.source.value.replace(
             badCommonImportRegex,
-            "$1$2"
+            "$2$3"
           );
           context.report({
             node,
