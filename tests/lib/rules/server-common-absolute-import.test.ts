@@ -40,6 +40,11 @@
        errors: [{ messageId: "default", line: 1, column: 1 }],
      },
      {
+      code: `import { Maybe } from "server-common/src/base/types/maybe"`,
+      output: `import { Maybe } from "server-common/base/types/maybe"`,
+      errors: [{ messageId: "default", line: 1, column: 1 }],
+    },
+    {
        code: `
  import {
    Maybe,
