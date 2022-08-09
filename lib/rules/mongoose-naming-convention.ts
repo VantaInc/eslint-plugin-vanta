@@ -11,7 +11,7 @@ import {
   AST_NODE_TYPES,
   TSESTree,
   ESLintUtils,
-} from "@typescript-eslint/experimental-utils";
+} from "@typescript-eslint/utils";
 
 const MONGOOSE_DOCUMENT_TYPE_NODE_IDENTIFIERS = new Set([
   "mongoose.Document",

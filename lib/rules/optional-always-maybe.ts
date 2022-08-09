@@ -6,7 +6,7 @@ import {
   AST_NODE_TYPES,
   TSESTree,
   ESLintUtils,
-} from "@typescript-eslint/experimental-utils";
+} from "@typescript-eslint/utils";
 
 const rule = ESLintUtils.RuleCreator(
   (ruleName) =>

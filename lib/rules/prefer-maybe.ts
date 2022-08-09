@@ -5,7 +5,7 @@
 import {
   AST_NODE_TYPES,
   ESLintUtils,
-} from "@typescript-eslint/experimental-utils";
+} from "@typescript-eslint/utils";
 
 const NOTHING_TYPES = [
   AST_NODE_TYPES.TSNullKeyword,
