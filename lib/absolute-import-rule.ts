@@ -2,7 +2,7 @@
  * @fileoverview Generic class that creates rules to enforce imports from {folder} are absolute
  */
 
-import { ESLintUtils } from "@typescript-eslint/experimental-utils";
+import { ESLintUtils } from "@typescript-eslint/utils";
 
 const absoluteImportRule = (folder: string) => {
   const ruleName = `${folder}-absolute-import`;

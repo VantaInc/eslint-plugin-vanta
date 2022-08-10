@@ -5,7 +5,7 @@
 import rule from "../../../lib/rules/prefer-maybe";
 import { resolve } from "path";
 
-import { TSESLint } from "@typescript-eslint/experimental-utils";
+import { TSESLint } from "@typescript-eslint/utils";
 
 const ruleTester = new TSESLint.RuleTester({
   parser: resolve(
