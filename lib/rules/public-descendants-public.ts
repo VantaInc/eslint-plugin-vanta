@@ -2,7 +2,10 @@
  * @fileoverview Lint rule to ensure that all types reachable from fields marked as @public are themselves marked as @public.
  */
 
-import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
+import {
+  GraphQLESLintRule,
+  requireGraphQLSchemaFromContext,
+} from "@graphql-eslint/eslint-plugin";
 
 import {
   DirectiveNode,
@@ -10,28 +13,29 @@ import {
   GraphQLEnumType,
   GraphQLScalarType,
 } from "graphql";
-import {
-  extractNamedType,
-  requireGraphQLSchemaFromContext,
-} from "../utils/graphqlutils";
+import { extractNamedType } from "../utils/graphqlutils";
 
 const PUBLIC_DIRECTIVE = "public";
+const RULE_ID = "public-descendants-public";
 
-const rule: GraphQLESLintRule = {
+const rule: GraphQLESLintRule<any[], true> = {
   meta: {
     type: "problem",
     docs: {
+      category: "Schema",
+      // @ts-ignore
       description:
         "Ensures that all types reachable from fields marked as @public are themselves marked as @public.",
-      category: "Best Practices",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/public-descendants-public.md",
+      requiresSchema: true,
+    },
+    messages: {
+      [RULE_ID]:
+        "All types reachable from fields marked as @public must be also marked as @public",
     },
   },
   create(context) {
-    const schema = requireGraphQLSchemaFromContext(
-      "public-descendants-public",
-      context
-    );
+    const schema = requireGraphQLSchemaFromContext(RULE_ID, context);
 
     const hasPublicDirective = (
       directives: readonly DirectiveNode[] | undefined

@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+       1 |   directive @public(
+       2 |     detail: String = "No authentication required for this action"
+       3 |   ) on FIELD_DEFINITION | OBJECT | UNION | ENUM
+       4 |
+       5 |   type T1 {
+       6 |     val: T2 @public
+       7 |   }
+       8 |
+       9 |   type T2 {
+      10 |     val: String
+      11 |   }
+
+#### ❌ Error
+
+      5 |   type T1 {
+    > 6 |     val: T2 @public
+        |     ^^^^^^^^^ Types accessible by @public fields must be marked @public.
+      7 |   }"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+       1 |   directive @public(
+       2 |     detail: String = "No authentication required for this action"
+       3 |   ) on FIELD_DEFINITION | OBJECT | UNION | ENUM
+       4 |
+       5 |   type T1 {
+       6 |     val: T2 @public
+       7 |   }
+       8 |
+       9 |   type T2 {
+      10 |     val: String @public
+      11 |   }
+
+#### ❌ Error
+
+      5 |   type T1 {
+    > 6 |     val: T2 @public
+        |     ^^^^^^^^^ Types accessible by @public fields must be marked @public.
+      7 |   }"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+       1 |   directive @public(
+       2 |     detail: String = "No authentication required for this action"
+       3 |   ) on FIELD_DEFINITION | OBJECT | UNION | ENUM
+       4 |
+       5 |   type T1 {
+       6 |     val: T2 @public
+       7 |   }
+       8 |
+       9 |   type T2 @public {
+      10 |     val: T3
+      11 |   }
+      12 |
+      13 |   type T3 {
+      14 |     val: String
+      15 |   }
+
+#### ❌ Error
+
+       8 |
+    >  9 |   type T2 @public {
+         |   ^^^^^^^^^^^^^^^^^
+    > 10 |     val: T3
+         | ^^^^^^^^^^^
+    > 11 |   }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types accessible from @public types must themselves be marked @public. Unmarked field: val
+      12 |"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+       1 |   directive @public(
+       2 |     detail: String = "No authentication required for this action"
+       3 |   ) on FIELD_DEFINITION | OBJECT | UNION | ENUM
+       4 |
+       5 |   type T1 {
+       6 |     val: T2
+       7 |   }
+       8 |
+       9 |   type T2 {
+      10 |     val: T3 @public
+      11 |   }
+      12 |
+      13 |   type T3 {
+      14 |     val: String
+      15 |   }
+
+#### ❌ Error
+
+       9 |   type T2 {
+    > 10 |     val: T3 @public
+         |     ^^^^^^^^^ Types accessible by @public fields must be marked @public.
+      11 |   }"
+`;
