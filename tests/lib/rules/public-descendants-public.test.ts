@@ -218,7 +218,7 @@ const invalid4 = /* GraphQL */ `
   }
 `;
 
-ruleTester.runGraphQLTests<any[], true>("public-descendants-public", rule, {
+ruleTester.runGraphQLTests("public-descendants-public", rule, {
   valid: [
     createValid(test1),
     createValid(test2),

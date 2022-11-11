@@ -18,7 +18,7 @@ import { extractNamedType } from "../utils/graphqlutils";
 const PUBLIC_DIRECTIVE = "public";
 const RULE_ID = "public-descendants-public";
 
-const rule: GraphQLESLintRule<any[], true> = {
+const rule: GraphQLESLintRule = {
   meta: {
     type: "problem",
     docs: {

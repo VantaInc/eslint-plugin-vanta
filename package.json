@@ -11,7 +11,7 @@
   "author": "Robbie Ostrow",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest tests/lib/rules/public-descendants-public.test.ts --detectOpenHandles",
+    "test": "jest tests/lib/rules/edges-are-relay-compliant.test.ts --detectOpenHandles",
     "build": "tsc",
     "build-and-test": "npm run build && npm run test",
     "release": "npm run build && npm publish --access=public"
