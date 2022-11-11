@@ -11,7 +11,7 @@
   "author": "Robbie Ostrow",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest tests --detectOpenHandles",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest tests --detectOpenHandles",
     "build": "tsc",
     "build-and-test": "npm run build && npm run test",
     "release": "npm run build && npm publish --access=public"
