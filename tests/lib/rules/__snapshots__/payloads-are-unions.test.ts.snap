@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type abcPayload {
+      2 |     result: Int
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type abcPayload {
+        | ^^^^^^^^^^^^^^^^^
+    > 2 |     result: Int
+        | ^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that end with 'Payload' must be unions"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | union abcPayload = String | BaseUserError
+
+#### ❌ Error 1/2
+
+    > 1 | union abcPayload = String | BaseUserError
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads must include exactly one 'Success' type, found 0
+
+#### ❌ Error 2/2
+
+    > 1 | union abcPayload = String | BaseUserError
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads should be unions of only Success and Error types"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 | union abcPayload = abcSuccess | Int
+
+#### ❌ Error 1/2
+
+    > 1 | union abcPayload = abcSuccess | Int
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads must include BaseUserError
+
+#### ❌ Error 2/2
+
+    > 1 | union abcPayload = abcSuccess | Int
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads should be unions of only Success and Error types"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 | union abcPayload = abcSuccess | bcdSuccess | BaseUserError
+
+#### ❌ Error
+
+    > 1 | union abcPayload = abcSuccess | bcdSuccess | BaseUserError
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads must include exactly one 'Success' type, found 2"
+`;
+
+exports[`Invalid #5 1`] = `
+"#### ⌨️ Code
+
+      1 | union abcPayload = abcSuccess | BaseUserError | Boolean
+
+#### ❌ Error
+
+    > 1 | union abcPayload = abcSuccess | BaseUserError | Boolean
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads should be unions of only Success and Error types"
+`;
+
+exports[`Invalid #6 1`] = `
+"#### ⌨️ Code
+
+      1 | union abcPayload = abcResult | BaseUserError
+
+#### ❌ Error 1/2
+
+    > 1 | union abcPayload = abcResult | BaseUserError
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads must include exactly one 'Success' type, found 0
+
+#### ❌ Error 2/2
+
+    > 1 | union abcPayload = abcResult | BaseUserError
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Payloads should be unions of only Success and Error types"
+`;

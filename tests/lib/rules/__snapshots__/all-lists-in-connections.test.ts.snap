@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type T {
+      2 |   users: [User!]!
+      3 | }
+      4 |
+      5 | type User {
+      6 |   id: ID!
+      7 |   name: String
+      8 | }
+
+#### ❌ Error
+
+      1 | type T {
+    > 2 |   users: [User!]!
+        |   ^^^^^^^^^^^^^^ Lists must be paginated or marked as guaranteed to be short using the directive @tinylist.
+      3 | }"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | type T {
+      2 |   users: [User!]!
+      3 |   users1: [User]
+      4 | }
+      5 |
+      6 | type User {
+      7 |   id: ID!
+      8 |   name: String
+      9 | }
+
+#### ❌ Error 1/2
+
+      1 | type T {
+    > 2 |   users: [User!]!
+        |   ^^^^^^^^^^^^^^ Lists must be paginated or marked as guaranteed to be short using the directive @tinylist.
+      3 |   users1: [User]
+
+#### ❌ Error 2/2
+
+      2 |   users: [User!]!
+    > 3 |   users1: [User]
+        |   ^^^^^^^^^^^^^ Lists must be paginated or marked as guaranteed to be short using the directive @tinylist.
+      4 | }"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 | type T {
+      2 |   users: [User!]! @tinylist
+      3 |   users1: [User!]
+      4 | }
+      5 |
+      6 | type User {
+      7 |   id: ID!
+      8 |   name: String
+      9 | }
+
+#### ❌ Error
+
+      2 |   users: [User!]! @tinylist
+    > 3 |   users1: [User!]
+        |   ^^^^^^^^^^^^^^ Lists must be paginated or marked as guaranteed to be short using the directive @tinylist.
+      4 | }"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+       1 | type T {
+       2 |   users: UserConnection
+       3 | }
+       4 |
+       5 | type UserConnection {
+       6 |   pageInfo: PageInfo!
+       7 |   edges: [UserEdge!]!
+       8 |   notEdges: [UserEdge!]! # this shouldn't be a list
+       9 |   totalCount: Int!
+      10 | }
+      11 |
+      12 | type PageInfo {
+      13 |   endCursor: String
+      14 |   hasNextPage: Boolean!
+      15 |   hasPreviousPage: Boolean!
+      16 |   startCursor: String
+      17 | }
+      18 |
+      19 | type UserEdge {
+      20 |   cursor: String!
+      21 |   node: User!
+      22 | }
+      23 |
+      24 | type User {
+      25 |   id: ID!
+      26 |   name: String
+      27 | }
+
+#### ❌ Error
+
+      7 |   edges: [UserEdge!]!
+    > 8 |   notEdges: [UserEdge!]! # this shouldn't be a list
+        |   ^^^^^^^^^^^^^^^^^^^^^ Lists must be paginated or marked as guaranteed to be short using the directive @tinylist.
+      9 |   totalCount: Int!"
+`;

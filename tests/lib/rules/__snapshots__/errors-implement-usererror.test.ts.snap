@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type NotAnErrorType implements UserError {
+      2 |   message: String!
+      3 |   code: ErrorCode!
+      4 |   otherStuff: String!
+      5 | }
+
+#### ❌ Error
+
+    > 1 | type NotAnErrorType implements UserError {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |   message: String!
+        | ^^^^^^^^^^^^^^^^^^
+    > 3 |   code: ErrorCode!
+        | ^^^^^^^^^^^^^^^^^^
+    > 4 |   otherStuff: String!
+        | ^^^^^^^^^^^^^^^^^^
+    > 5 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that do not end in 'Error' cannot implement UserError"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | type NotAnErrorType implements OtherType & UserError {
+      2 |   message: String!
+      3 |   code: ErrorCode!
+      4 |   otherStuff: String!
+      5 | }
+
+#### ❌ Error
+
+    > 1 | type NotAnErrorType implements OtherType & UserError {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |   message: String!
+        | ^^^^^^^^^^^^^^^^^^
+    > 3 |   code: ErrorCode!
+        | ^^^^^^^^^^^^^^^^^^
+    > 4 |   otherStuff: String!
+        | ^^^^^^^^^^^^^^^^^^
+    > 5 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that do not end in 'Error' cannot implement UserError"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 | type PasswordTooWeakError {
+      2 |   passwordRules: [String!]!
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type PasswordTooWeakError {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |   passwordRules: [String!]!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that end with 'Error' must implement UserError"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 | type PasswordTooWeakError implements OtherType {
+      2 |   passwordRules: [String!]!
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type PasswordTooWeakError implements OtherType {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |   passwordRules: [String!]!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that end with 'Error' must implement UserError"
+`;
+
+exports[`Invalid #5 1`] = `
+"#### ⌨️ Code
+
+      1 | extend type NotErrorType implements UserError {
+      2 |   passwordRules: [String!]!
+      3 | }
+
+#### ❌ Error
+
+    > 1 | extend type NotErrorType implements UserError {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |   passwordRules: [String!]!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Types that do not end in 'Error' cannot implement UserError"
+`;

@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   firstMutation: abcPayload
+      3 |   secondMutation: abcPayload
+      4 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   firstMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |   secondMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 | }
+        | ^^ Mutation payload types must be unique; reused type abcPayload"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   firstMutation: abcPayload
+      3 |   secondMutation: bcdPayload
+      4 |   thirdMutation: abcPayload
+      5 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   firstMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |   secondMutation: bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |   thirdMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 | }
+        | ^^ Mutation payload types must be unique; reused type abcPayload"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 |     type Mutation {
+      2 |       firstMutation: abcPayload
+      3 |     }
+      4 |
+      5 |     extend type Mutation {
+      6 |       secondMutation: abcPayload}
+
+#### ❌ Error
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |       secondMutation: abcPayload}
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation payload types must be unique; reused type abcPayload"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 |     type Mutation {
+      2 |       firstMutation: abcPayload
+      3 |       secondMutation: bcdPayload
+      4 |       thirdMutation: abcPayload
+      5 |     }
+      6 |
+      7 |     extend type Mutation {
+      8 |       fourthMutation: bcdPayload
+      9 |     }
+
+#### ❌ Error 1/2
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |       secondMutation: bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       thirdMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 7 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 8 |       fourthMutation: bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 9 |     }
+        | ^^^^^^ Mutation payload types must be unique; reused type abcPayload
+
+#### ❌ Error 2/2
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |       secondMutation: bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       thirdMutation: abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 7 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 8 |       fourthMutation: bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 9 |     }
+        | ^^^^^^ Mutation payload types must be unique; reused type bcdPayload"
+`;

@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   firstMutation(input: Input!): abcPayload
+      3 |   secondMutation(input: Input!): bcdPayload
+      4 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   firstMutation(input: Input!): abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |   secondMutation(input: Input!): bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 | }
+        | ^^ Mutation input types must be unique; reused type Input"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   firstMutation(input: abcInput!): abcPayload
+      3 |   secondMutation(input: bcdInput!): bcdPayload
+      4 |   thirdMutation(input: abcInput!): cdePayload
+      5 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   firstMutation(input: abcInput!): abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |   secondMutation(input: bcdInput!): bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |   thirdMutation(input: abcInput!): cdePayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 | }
+        | ^^ Mutation input types must be unique; reused type abcInput"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 |     type Mutation {
+      2 |       firstMutation(input: Input!): abcPayload
+      3 |     }
+      4 |
+      5 |     extend type Mutation {
+      6 |       secondMutation(input: Input!): cdePayload}
+
+#### ❌ Error
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation(input: Input!): abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |       secondMutation(input: Input!): cdePayload}
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation input types must be unique; reused type Input"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 |     type Mutation {
+      2 |       firstMutation(input: abcInput!): abcPayload
+      3 |       secondMutation(input: bcdInput!): bcdPayload
+      4 |       thirdMutation(input: abcInput!): cdePayload
+      5 |     }
+      6 |
+      7 |     extend type Mutation {
+      8 |       fourthMutation(input: bcdInput!): defPayload
+      9 |     }
+
+#### ❌ Error 1/2
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation(input: abcInput!): abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |       secondMutation(input: bcdInput!): bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       thirdMutation(input: abcInput!): cdePayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 7 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 8 |       fourthMutation(input: bcdInput!): defPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 9 |     }
+        | ^^^^^^ Mutation input types must be unique; reused type abcInput
+
+#### ❌ Error 2/2
+
+    > 1 |     type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^
+    > 2 |       firstMutation(input: abcInput!): abcPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |       secondMutation(input: bcdInput!): bcdPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       thirdMutation(input: abcInput!): cdePayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 5 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 7 |     extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 8 |       fourthMutation(input: bcdInput!): defPayload
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 9 |     }
+        | ^^^^^^ Mutation input types must be unique; reused type bcdInput"
+`;

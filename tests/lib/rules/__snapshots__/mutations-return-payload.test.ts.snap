@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   invalid: bcd
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   invalid: bcd
+        | ^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutations must return types with the suffix "Payload""
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   invalid: bcd!
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   invalid: bcd!
+        | ^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation payloads must be nullable"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   invalid: [bcdPayload!]!
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   invalid: [bcdPayload!]!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation payloads must be nullable"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   invalid: [bcdPayload]
+      3 | }
+
+#### ❌ Error
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   invalid: [bcdPayload]
+        | ^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation payloads must not be list types"
+`;
+
+exports[`Invalid #5 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   validMutation: abcPayload
+      3 | }
+      4 |
+      5 | extend type Mutation {
+      6 |   invalidOne: bcd
+      7 | }
+
+#### ❌ Error
+
+      4 |
+    > 5 | extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |   invalidOne: bcd
+        | ^^^^^^^^^^^^^^^^^
+    > 7 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutations must return types with the suffix "Payload""
+`;
+
+exports[`Invalid #6 1`] = `
+"#### ⌨️ Code
+
+      1 | type Mutation {
+      2 |   invalidMutation: abcPayload!
+      3 | }
+      4 |
+      5 | extend type Mutation {
+      6 |   another: bcd
+      7 | }
+
+#### ❌ Error 1/2
+
+    > 1 | type Mutation {
+        | ^^^^^^^^^^^^^^^
+    > 2 |   invalidMutation: abcPayload!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutation payloads must be nullable
+      4 |
+
+#### ❌ Error 2/2
+
+      4 |
+    > 5 | extend type Mutation {
+        | ^^^^^^^^^^^^^^^^^^^^^^
+    > 6 |   another: bcd
+        | ^^^^^^^^^^^^^^
+    > 7 | }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Mutations must return types with the suffix "Payload""
+`;
