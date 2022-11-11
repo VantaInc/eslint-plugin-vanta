@@ -13,8 +13,9 @@ const rule: GraphQLESLintRule = {
   meta: {
     type: "problem",
     docs: {
+      // @ts-ignore
       description: `Ensures that all list types are edges in connections, or marked as ${SHORT_LIST_DIRECTIVE}`,
-      category: "Best Practices",
+      category: "Schema",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/all-lists-in-connections.md",
     },
   },
