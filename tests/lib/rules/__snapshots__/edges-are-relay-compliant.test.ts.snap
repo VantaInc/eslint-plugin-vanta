@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 |   type MissingNodeEdge {
+      2 |     notNode: String
+      3 |     cursor: String
+      4 |   }
+
+#### ❌ Error
+
+    > 1 |   type MissingNodeEdge {
+        |   ^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |     notNode: String
+        | ^^^^^^^^^^^^^^^^^^^
+    > 3 |     cursor: String
+        | ^^^^^^^^^^^^^^^^^^^
+    > 4 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Edges must contain a node field"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 |   type ListNodeEdge {
+      2 |     node: [String]
+      3 |     cursor: String
+      4 |   }
+
+#### ❌ Error
+
+    > 1 |   type ListNodeEdge {
+        |   ^^^^^^^^^^^^^^^^^^^
+    > 2 |     node: [String]
+        | ^^^^^^^^^^^^^^^^^^
+    > 3 |     cursor: String
+        | ^^^^^^^^^^^^^^^^^^
+    > 4 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Node field cannot be a list"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 |   type NonNullListEdge {
+      2 |     node: [String]!
+      3 |     cursor: String
+      4 |   }
+
+#### ❌ Error
+
+    > 1 |   type NonNullListEdge {
+        |   ^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |     node: [String]!
+        | ^^^^^^^^^^^^^^^^^^^
+    > 3 |     cursor: String
+        | ^^^^^^^^^^^^^^^^^^^
+    > 4 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Node field cannot be a list"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 |   type MissingCursorEdge {
+      2 |     node: [String]!
+      3 |   }
+
+#### ❌ Error 1/2
+
+    > 1 |   type MissingCursorEdge {
+        |   ^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |     node: [String]!
+        | ^^^^^^^^^^^^^^^^^^^
+    > 3 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Node field cannot be a list
+
+#### ❌ Error 2/2
+
+    > 1 |   type MissingCursorEdge {
+        |   ^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |     node: [String]!
+        | ^^^^^^^^^^^^^^^^^^^
+    > 3 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Edges must contain a cursor field"
+`;
+
+exports[`Invalid #5 1`] = `
+"#### ⌨️ Code
+
+      1 |   type NotStringCursorEdge {
+      2 |     node: String!
+      3 |     edge: Int
+      4 |   }
+
+#### ❌ Error
+
+    > 1 |   type NotStringCursorEdge {
+        |   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |     node: String!
+        | ^^^^^^^^^^^^^^^^^
+    > 3 |     edge: Int
+        | ^^^^^^^^^^^^^^^^^
+    > 4 |   }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Edges must contain a cursor field"
+`;

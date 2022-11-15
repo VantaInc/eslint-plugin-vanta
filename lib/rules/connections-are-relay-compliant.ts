@@ -3,10 +3,8 @@
  * https://relay.dev/graphql/connections.htm#sec-Connection-Types
  */
 
-import {
-  GraphQLESLintRule,
-  GraphQLESTreeNode,
-} from "@graphql-eslint/eslint-plugin";
+import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 import { ObjectTypeDefinitionNode } from "graphql";
 import { extractNamedType, isListType } from "../utils/graphqlutils";
 
@@ -14,9 +12,10 @@ const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "All Connection GraphQL types must implement the interface specified by the Relay cursor spec.",
-      category: "Best Practices",
+      category: "Schema",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/connections-are-relay-compliant.md",
     },
   },

@@ -1,16 +1,15 @@
-import {
-  GraphQLESLintRule,
-  GraphQLESTreeNode,
-} from "@graphql-eslint/eslint-plugin";
+import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 import { TypeDefinitionNode } from "graphql/language/ast";
 
 const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "Payloads are unions of a success type and one or more error types",
-      category: "Best Practices",
+      category: "Operations",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/payloads-are-unions.md",
     },
   },

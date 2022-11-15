@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid #1 1`] = `
+"#### ⌨️ Code
+
+      1 |     type MissingEdgesConnection {
+      2 |       pageInfo: PageInfo!
+      3 |     }
+
+#### ❌ Error
+
+    > 1 |     type MissingEdgesConnection {
+        |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |       pageInfo: PageInfo!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |     }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Connections must contain an edge field"
+`;
+
+exports[`Invalid #2 1`] = `
+"#### ⌨️ Code
+
+      1 |       type EdgesNotListConnection {
+      2 |         edges: testEdge
+      3 |         pageInfo: PageInfo!
+      4 |       }
+
+#### ❌ Error
+
+    > 1 |       type EdgesNotListConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: testEdge
+        | ^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: PageInfo!
+        | ^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Edges field must be a list"
+`;
+
+exports[`Invalid #3 1`] = `
+"#### ⌨️ Code
+
+      1 |       type MissingPageInfoConnection {
+      2 |         edges: [testEdge]
+      3 |       }
+
+#### ❌ Error
+
+    > 1 |       type MissingPageInfoConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [testEdge]
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Connections must contain a pageInfo field"
+`;
+
+exports[`Invalid #4 1`] = `
+"#### ⌨️ Code
+
+      1 |       type PageInfoNotNonnullableConnection {
+      2 |         edges: [testEdge]
+      3 |         pageInfo: PageInfo
+      4 |       }
+
+#### ❌ Error
+
+    > 1 |       type PageInfoNotNonnullableConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [testEdge]
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: PageInfo
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ pageInfo must be non-nullable"
+`;
+
+exports[`Invalid #5 1`] = `
+"#### ⌨️ Code
+
+      1 |       type PageInfoNotObjectTypeConnection {
+      2 |         edges: [test]
+      3 |         pageInfo: [test]!
+      4 |       }
+
+#### ❌ Error 1/2
+
+    > 1 |       type PageInfoNotObjectTypeConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [test]
+        | ^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: [test]!
+        | ^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ edge type must have a suffix \`Edge\`
+
+#### ❌ Error 2/2
+
+    > 1 |       type PageInfoNotObjectTypeConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [test]
+        | ^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: [test]!
+        | ^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ pageInfo must be of type PageInfo"
+`;
+
+exports[`Invalid #6 1`] = `
+"#### ⌨️ Code
+
+      1 |       type EdgeDoesntEndWithEdgeConnection {
+      2 |         edges: [testEdgeNot!]
+      3 |         pageInfo: PageInfo!
+      4 |       }
+
+#### ❌ Error
+
+    > 1 |       type EdgeDoesntEndWithEdgeConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [testEdgeNot!]
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: PageInfo!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ edge type must have a suffix \`Edge\`"
+`;
+
+exports[`Invalid #7 1`] = `
+"#### ⌨️ Code
+
+      1 |       type PageInfoWrongTypeConnection {
+      2 |         edges: [testNotEdge!]
+      3 |         pageInfo: notPageInfo!
+      4 |       }
+
+#### ❌ Error
+
+    > 1 |       type PageInfoWrongTypeConnection {
+        |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 2 |         edges: [testNotEdge!]
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 3 |         pageInfo: notPageInfo!
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    > 4 |       }
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ pageInfo must be of type PageInfo"
+`;

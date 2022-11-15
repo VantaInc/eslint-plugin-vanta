@@ -2,19 +2,18 @@
  * @fileoverview Ensure that all mutations return a nullable type with the suffix "Payload"
  */
 
-import {
-  GraphQLESLintRule,
-  GraphQLESTreeNode,
-} from "@graphql-eslint/eslint-plugin";
+import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 import { ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
 
 const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "All mutations must return a nullable type with the suffix `Payload`",
-      category: "Best Practices",
+      category: "Operations",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-return-payload.md",
     },
   },

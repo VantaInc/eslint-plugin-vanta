@@ -5,8 +5,8 @@
 import {
   GraphQLESLintRule,
   GraphQLESLintRuleListener,
-  GraphQLESTreeNode,
 } from "@graphql-eslint/eslint-plugin";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 import {
   ObjectTypeDefinitionNode,
   ObjectTypeExtensionNode,
@@ -16,9 +16,10 @@ const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "A type should implement the UserError interface if and only if its name ends with Error.",
-      category: "Best Practices",
+      category: "Schema",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/errors-implement-usererror.md",
     },
   },

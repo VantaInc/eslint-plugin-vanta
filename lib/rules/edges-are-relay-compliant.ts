@@ -3,36 +3,26 @@
  * https://relay.dev/graphql/connections.htm#sec-Edge-Types
  */
 
-import {
-  GraphQLESLintRule,
-  GraphQLESTreeNode,
-} from "@graphql-eslint/eslint-plugin";
+import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
 import { ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
-import {
-  extractNamedType,
-  isListType,
-  requireGraphQLSchemaFromContext,
-} from "../utils/graphqlutils";
+import { extractNamedType, isListType } from "../utils/graphqlutils";
 import { TypeNode } from "graphql";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 
 const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "All Edge GraphQL types must implement the interface specified by the Relay cursor spec.",
-      category: "Best Practices",
+      category: "Schema",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/edges-are-relay-compliant.md",
     },
   },
   create(context) {
     const validateType = (n: GraphQLESTreeNode<ObjectTypeDefinitionNode>) => {
       const node = n.rawNode();
-
-      const schema = requireGraphQLSchemaFromContext(
-        "edges-are-relay-compliant",
-        context
-      );
 
       if (!node.name.value.endsWith("Edge")) {
         return;

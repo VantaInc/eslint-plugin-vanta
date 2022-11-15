@@ -2,19 +2,18 @@
  * @fileoverview Ensure that all mutations take a single non-nullable input type with the suffix "Input" or have no arguments
  */
 
-import {
-  GraphQLESLintRule,
-  GraphQLESTreeNode,
-} from "@graphql-eslint/eslint-plugin";
+import { GraphQLESLintRule } from "@graphql-eslint/eslint-plugin";
+import { GraphQLESTreeNode } from "@graphql-eslint/eslint-plugin/estree-converter";
 import { ObjectTypeDefinitionNode, ObjectTypeExtensionNode } from "graphql";
 
 const rule: GraphQLESLintRule = {
   meta: {
     type: "suggestion",
     docs: {
+      // @ts-ignore
       description:
         "All mutations must take a single non-nullable input type with the suffix `Input` or have no arguments",
-      category: "Best Practices",
+      category: "Operations",
       url: "https://github.com/VantaInc/eslint-plugin-vanta/blob/main/docs/rules/mutations-input-type.md",
     },
   },
