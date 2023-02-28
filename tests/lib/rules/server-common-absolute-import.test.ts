@@ -57,5 +57,10 @@
  } from "server-common/base/types/maybe"`,
        errors: [{ messageId: "default", line: 2, column: 2 }],
      },
+     {
+      code: `import { sanitize } from "../../server-common/src/server/htmlUtils"`,
+      output: `import { sanitize } from "server-common/server/htmlUtils"`,
+      errors: [{ messageId: "default", line: 1, column: 1 }],
+     }
    ],
  });

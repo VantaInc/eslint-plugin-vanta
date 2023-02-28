@@ -27,7 +27,7 @@ const absoluteImportRule = (folder: string) => {
     defaultOptions: [],
     create(context) {
       const badCommonImportRegex = new RegExp(
-        `(\.\.\/)*?(${folder}\/)src\/(.*)`
+        `^(\.\.\/)*(${folder}\/)src\/(.*)$`
       );
       return {
         ImportDeclaration(node) {

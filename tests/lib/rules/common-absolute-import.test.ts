@@ -27,6 +27,9 @@ ruleTester.run("common-absolute-import", rule, {
     {
       code: `import { Maybe } from "../common/base/types/maybe"`,
     },
+    {
+      code: `import { sanitize } from "../../server-common/src/server/htmlUtils"`,
+    }
   ],
   invalid: [
     {
@@ -56,6 +59,6 @@ import {
   Maybe2
 } from "common/base/types/maybe"`,
       errors: [{ messageId: "default", line: 2, column: 1 }],
-    },
+    }
   ],
 });
